@@ -1,3 +1,9 @@
 #splash{
-    background: #bd2424;
+    background: $fondo_splash;
+    position: absolute;
+}
+
+#splash img{
+    max-width: 100%;
+    max-height: 100%;
 }
