@@ -1791,7 +1791,7 @@
 52/workspaces/PocketWiseApp/node_modules/css-tree/dist1724696150357078405 1
 110/workspaces/PocketWiseApp/node_modules/@parcel/optimizer-htmlnano/node_modules/css-tree/lib/syntax/node/Raw.js1724696149557078365 0
 93/workspaces/PocketWiseApp/node_modules/@parcel/core/test/fixtures/targets-default-distdir-one1724696150369078406 1
-41/workspaces/PocketWiseApp/dist/index.html1724700695641307327 0
+41/workspaces/PocketWiseApp/dist/index.html1724701008257323072 0
 86/workspaces/PocketWiseApp/node_modules/@swc/helpers/cjs/_object_without_properties.cjs1724696148189078296 0
 84/workspaces/PocketWiseApp/node_modules/@swc/helpers/cjs/_tagged_template_literal.cjs1724696148281078301 0
 57/workspaces/PocketWiseApp/node_modules/css-tree/README.md1724696150385078407 0
@@ -2420,7 +2420,7 @@
 105/workspaces/PocketWiseApp/node_modules/@parcel/optimizer-svgo/node_modules/mdn-data/css/units.schema.json1724696148229078298 0
 59/workspaces/PocketWiseApp/node_modules/@lmdb/lmdb-linux-x641724696149313078353 1
 64/workspaces/PocketWiseApp/node_modules/sass/types/value/map.d.ts1724696150213078398 0
-30/workspaces/PocketWiseApp/dist1724700695657307328 1
+30/workspaces/PocketWiseApp/dist1724701008257323072 1
 107/workspaces/PocketWiseApp/node_modules/@parcel/optimizer-htmlnano/node_modules/svgo/plugins/minifyStyles.js1724696148189078296 0
 73/workspaces/PocketWiseApp/node_modules/cosmiconfig/dist/ExplorerSync.d.ts1724696147881078281 0
 87/workspaces/PocketWiseApp/node_modules/@parcel/optimizer-svgo/node_modules/csso/LICENSE1724696146717078222 0
@@ -2449,7 +2449,7 @@
 67/workspaces/PocketWiseApp/node_modules/source-map/lib/quick-sort.js1724696145249078148 0
 77/workspaces/PocketWiseApp/node_modules/@parcel/core/lib/public/BundleGraph.js1724696148773078326 0
 112/workspaces/PocketWiseApp/node_modules/@parcel/optimizer-htmlnano/node_modules/svgo/plugins/removeXMLProcInst.js1724696148761078325 0
-40/workspaces/PocketWiseApp/src/index.html1724701008561323087 0
+40/workspaces/PocketWiseApp/src/index.html1724701621349353950 0
 119/workspaces/PocketWiseApp/node_modules/@parcel/optimizer-htmlnano/node_modules/csso/lib/restructure/3-disjoinRuleset.js1724696146965078235 0
 89/workspaces/PocketWiseApp/node_modules/csso/node_modules/css-tree/lib/convertor/create.js1724696149613078368 0
 83/workspaces/PocketWiseApp/node_modules/@parcel/workers/lib/process/ProcessWorker.js1724696147949078284 0
@@ -5413,7 +5413,7 @@
 87/workspaces/PocketWiseApp/node_modules/htmlnano/lib/modules/sortAttributesWithLists.mjs1724696149261078350 0
 84/workspaces/PocketWiseApp/node_modules/@swc/helpers/_/_class_call_check/package.json1724696149757078375 0
 89/workspaces/PocketWiseApp/node_modules/caniuse-lite/data/features/background-clip-text.js1724696148281078301 0
-48/workspaces/PocketWiseApp/src/css/_ganancia.scss1724696113233076536 0
+48/workspaces/PocketWiseApp/src/css/_ganancia.scss1724702633473404925 0
 86/workspaces/PocketWiseApp/node_modules/caniuse-lite/data/features/template-literals.js1724696151525078464 0
 75/workspaces/PocketWiseApp/node_modules/caniuse-lite/data/features/tls1-1.js1724696151545078465 0
 81/workspaces/PocketWiseApp/node_modules/caniuse-lite/data/features/css-rrggbbaa.js1724696149781078376 0

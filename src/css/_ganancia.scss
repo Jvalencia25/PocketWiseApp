@@ -1,4 +1,72 @@
-#ganancia{
+#ganancia {
     background: $fondo_sobre;
     position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+
+    .header-ganancia {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 20px;
+
+        .icono-redireccion {
+            margin-right: 10px;
+        }
+
+        .boton.volver {
+            margin-left: auto;
+        }
+    }
+
+    .titulo-ganancia {
+        font-size: 36px;
+        color: #67C8A1;
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .imagen-ganancia {
+        max-width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .texto-cantidad {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .input-ganancia {
+        width: 80%;
+        padding: 10px;
+        border: 2px solid #F3C1CA;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        text-align: center;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .boton-aceptar {
+        background-color: #B9DFD2;
+        color: #67C8A1;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #A0D0C3;
+        }
+    }
 }
