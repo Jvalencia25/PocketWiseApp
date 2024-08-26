@@ -1,72 +1,78 @@
+$btn-ganancia-color: #B9DFD2;
+$txt-ganancia-color: #67C8A1;
+$borde-color: #F3C1CA;
+$padding: 20px;
+$margin-bottom: 20px;
+
 #ganancia {
-    background: $fondo_sobre;
+    background: $fondo-sobre;
     position: absolute;
-    width: 100%;
-    height: 100%;
+}
+
+.header-ganancia {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    padding: 20px;
+}
+.header-ganancia img {
+    height: 40px;
+}
 
-    .header-ganancia {
-        width: 100%;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        margin-bottom: 20px;
+.icono-redireccion {
+     margin-right: 10px;
+  }
 
-        .icono-redireccion {
-            margin-right: 10px;
-        }
+ .boton.volver {
+   margin-left: 0px;
+   height: 20px;
+   width: 20px;
+   margin-top: 10px;
+ }
+    
 
-        .boton.volver {
-            margin-left: auto;
-        }
+.titulo-ganancia {
+    font-size: 36px;
+    color: $txt-ganancia-color;
+    text-align: center;
+    margin-bottom: $margin-bottom;
+}
+
+.imagen-ganancia {
+    max-width: 80%;
+    height: auto;
+    margin-bottom: $margin-bottom;
+}
+
+.texto-cantidad {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: $margin-bottom;
+}
+
+.input-ganancia {
+    width: 80%;
+    padding: 10px;
+    border: 2px solid $borde-color;
+    border-radius: 10px;
+    margin-bottom: $margin-bottom;
+    font-size: 16px;
+    text-align: center;
+
+    &:focus {
+        outline: none;
     }
+}
 
-    .titulo-ganancia {
-        font-size: 36px;
-        color: #67C8A1;
-        text-align: center;
-        margin: 20px 0;
-    }
+.boton-aceptar {
+    background-color: $btn-ganancia-color;
+    color: $txt-ganancia-color;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 
-    .imagen-ganancia {
-        max-width: 80%;
-        margin-bottom: 20px;
-    }
-
-    .texto-cantidad {
-        font-size: 18px;
-        margin-bottom: 10px;
-    }
-
-    .input-ganancia {
-        width: 80%;
-        padding: 10px;
-        border: 2px solid #F3C1CA;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        font-size: 16px;
-        text-align: center;
-
-        &:focus {
-            outline: none;
-        }
-    }
-
-    .boton-aceptar {
-        background-color: #B9DFD2;
-        color: #67C8A1;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 10px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-
-        &:hover {
-            background-color: #A0D0C3;
-        }
-    }
+    &:hover {
+        background-color: darken($btn-ganancia-color, 10%);
+   }
 }
