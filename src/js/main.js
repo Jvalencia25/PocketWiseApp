@@ -25,7 +25,24 @@ function init(){
     setTimeout(()=>{
         cargarSeccion("home");
     }, 3000);
+
+    document.getElementById("btn_aceptar").addEventListener("click", function() {
+        const inputGanancia = document.getElementById("input-ganancia").value;
+        const cantidad = parseFloat(inputGanancia.replace(/[^0-9.]/g, ''));
+        if (!isNaN(cantidad)) {
+            const saldoElement = document.getElementById("saldo-usuario");
+            const saldoActual = parseFloat(saldoElement.textContent.replace(/[^0-9.]/g, '')) || 0;
+            const nuevoSaldo = saldoActual + cantidad;
+            saldoElement.textContent = formatCurrency(nuevoSaldo);
+        }
+        cargarSeccion("home");
+    });
 }
+
+function formatCurrency(amount) {
+    return amount.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 });
+}
+
 function asignarVolver(){
     let btns_volver = document.querySelectorAll(".volver");
     for (let i = 0; i < btns_volver.length; i++) {
