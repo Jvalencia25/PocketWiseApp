@@ -41,6 +41,7 @@ function init(){
             const movimiento = new Movimiento(cantidad, 'ganancia', hora, fecha);
             
             listaMovimientos.push(movimiento);
+            document.getElementById("input-ganancia").value = "";
         }
         cargarSeccion("home");
     });
@@ -91,7 +92,8 @@ function ocultar()
     }
 }
 function cambiarSeccion(e){ 
-    let seccion = e.target.id.split("_")[1];
+    let targetId = e.currentTarget.id;  
+    let seccion = targetId.split("_")[1]; 
     cargarSeccion(seccion);
 }
 
