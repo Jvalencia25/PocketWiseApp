@@ -26,7 +26,7 @@ function init(){
         cargarSeccion("home");
     }, 3000);
 
-    document.getElementById("btn_aceptar").addEventListener("click", function() {
+    document.getElementById("btn_aceptar_ganancia").addEventListener("click", function() {
         const inputGanancia = document.getElementById("input-ganancia").value;
         const cantidad = parseFloat(inputGanancia.replace(/[^0-9.]/g, ''));
         if (!isNaN(cantidad)) {
