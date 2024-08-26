@@ -13,21 +13,21 @@ $opcion-borde-color: #F8D7DE;
     position: absolute;
 }
 
-.header-home {
+#home .header-home {
     display: flex;
     align-items: center;
 }
 
-.header-home img {
+#home .header-home img {
     height: 40px;
 }
 
-#icono-redireccion {
+#home #icono-redireccion {
     margin-right: 10px;
     margin-left: 10px;
 }
 
-.saldo-cuadro {
+#home .saldo-cuadro {
     border: 2px solid $borde-color;
     border-radius: 10px;
     padding: 10px;
@@ -35,13 +35,13 @@ $opcion-borde-color: #F8D7DE;
     margin: 20px 10px;
 }
 
-.saldo-text {
+#home .saldo-text {
     color: $saldo-color;
     font-size: 18px;
     font-weight: bold;
 }
 
-.saldo-valor {
+#home .saldo-valor {
     color: $saldo-color;
     font-size: 32px;
     font-weight: bold;
@@ -49,17 +49,17 @@ $opcion-borde-color: #F8D7DE;
     text-align: center;
 }
 
-.separador {
+#home .separador {
     width: 100%;
 }
 
-.opciones {
+#home .opciones {
     display: flex;
     justify-content: space-around;
     margin: 20px 10px;
 }
 
-.opcion {
+#home .opcion {
     text-align: center;
     cursor: pointer;
     border: 2px solid $opcion-borde-color;
@@ -69,20 +69,20 @@ $opcion-borde-color: #F8D7DE;
     width: 40%;
 }
 
-.opcion span {
+#home .opcion span {
     color: $txt-opciones-color;
     font-weight: bold;
     display: block;
     margin-top: 5px;
 }
 
-.opcion img {
+#home .opcion img {
     width: 80px;
     height: 80px;
     object-fit: cover;
 }
 
-.boton-ganancia {
+#home .boton-ganancia {
     background-color: $btn-ganancia-color;
     color: $txt-ganancia-color;
     width: 90%;
@@ -93,20 +93,20 @@ $opcion-borde-color: #F8D7DE;
     cursor: pointer;
 }
 
-.boton-ganancia .agregar-text {
+#home .boton-ganancia .agregar-text {
     font-weight: bold;
     font-size: 14px;
     text-align: left;
     display: block;
 }
 
-.boton-ganancia .ganancia-text {
+#home .boton-ganancia .ganancia-text {
     font-size: 35px;
     text-align: center;
     font-weight: bold;
 }
 
-.boton-gasto {
+#home .boton-gasto {
     background-color: $btn-gasto-color;
     color: $txt-gasto-color;
     width: 90%;
@@ -117,20 +117,20 @@ $opcion-borde-color: #F8D7DE;
     cursor: pointer;
 }
 
-.boton-gasto .agregar-text {
+#home .boton-gasto .agregar-text {
     font-weight: bold;
     font-size: 14px;
     text-align: left;
     display: block;
 }
 
-.boton-gasto .gasto-text {
+#home .boton-gasto .gasto-text {
     font-size: 35px;
     text-align: center;
     font-weight: bold;
 }
 
-.sobre-powi {
+#home .sobre-powi {
     position: absolute;
     bottom: 10px;
     font-size: 24px;
@@ -138,8 +138,4 @@ $opcion-borde-color: #F8D7DE;
     font-weight: bold;
     color: $separador-color;
     cursor: pointer;
-}
-
-.ocultar {
-    display: none;
 }
