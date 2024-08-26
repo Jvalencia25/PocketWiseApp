@@ -1,5 +1,121 @@
+$saldo-color: #B59795;
+$borde-color: #F3C1CA;
+$btn-ganancia-color: #F8D7DE;
+$btn-gasto-color: #EAF2FF;
+$txt-ganancia-color: #E58899;
+$txt-gasto-color: #BCD0EB;
+$separador-color: #F4CB94;
 #home{
     background: $fondo_home;
     position: absolute;
     
+}
+
+.header-home {
+    display: flex;
+    align-items: center;
+}
+
+.header-home img {
+    height: 40px;
+}
+
+#icono-redireccion {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.saldo-cuadro {
+    border: 2px solid $borde-color;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: left;
+    margin: 20px 10px;
+}
+
+.saldo-text {
+    color: $saldo-color;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.saldo-valor {
+    color: $saldo-color;
+    font-size: 32px;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+}
+
+.separador {
+    width: 100%;
+}
+
+.opciones {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.opcion {
+    text-align: center;
+    cursor: pointer;
+}
+
+.opcion span {
+    color: $txt-gasto-color;
+    font-weight: bold;
+    display: block;
+    margin-top: 5px;
+}
+
+.opcion img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.boton-grande {
+    background-color: $btn-ganancia-color;
+    color: $txt-ganancia-color;
+    width: 90%;
+    border: none;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    cursor: pointer;
+}
+
+.boton-grande .agregar-text {
+    font-weight: bold;
+    font-size: 14px;
+    text-align: left;
+    display: block;
+}
+
+.boton-grande .ganancia-text,
+.boton-grande .gasto-text {
+    font-size: 35px;
+    text-align: center;
+    
+    font-weight: bold;
+}
+
+.boton-grande#gasto {
+    background-color: $btn-gasto-color;
+    color: $txt-gasto-color;
+}
+
+.sobre-powi {
+    position: absolute;
+    bottom: 10px;
+    font-size: 24px;
+    right: 10px;
+    font-weight: bold;
+    color: $separador-color;
+    cursor: pointer;
+}
+
+.ocultar {
+    display: none;
 }
