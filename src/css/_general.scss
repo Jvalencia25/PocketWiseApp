@@ -1,9 +1,7 @@
-$fondo_creditos:DeepSkyBlue;
 $fondo_home:#FDF5E2;
-$fondo_instrucciones:yellowgreen;
-$fondo_juego:violet;
 $fondo_splash:#FDF5E2;
-$btn-color: Navy;
+$fondo_sobre:#FDF5E2;
+$btn-color: #B59795;
 $txt-color: white;
 
 body{
@@ -12,6 +10,7 @@ body{
     display: flex;
     align-items: center;
     height: 100vh;
+    font-family: "Dosis", sans-serif;
 }
 section{
     width:393px;
@@ -24,10 +23,15 @@ section{
     color:$txt-color;
     padding: 10px;
     text-decoration: none;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    text-align: center; 
+    line-height: 20px;
 }
 .volver{
-    margin-left: -300px;
-    line-height: 50px;
+    margin-left: -350px;
+    line-height: 60px;
 }
 .ocultar{
     display: none;
