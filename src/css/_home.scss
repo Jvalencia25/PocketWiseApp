@@ -1,14 +1,16 @@
 $saldo-color: #B59795;
 $borde-color: #F3C1CA;
-$btn-ganancia-color: #F8D7DE;
-$btn-gasto-color: #EAF2FF;
-$txt-ganancia-color: #E58899;
-$txt-gasto-color: #BCD0EB;
+$btn-ganancia-color: #B9DFD2;
+$btn-gasto-color: #D6C6E1;
+$txt-ganancia-color: #67C8A1;
+$txt-opciones-color: #E58899;
+$txt-gasto-color: #A587D6;
 $separador-color: #F4CB94;
+$opcion-borde-color: #F8D7DE;
+
 #home{
     background: $fondo_home;
     position: absolute;
-    
 }
 
 .header-home {
@@ -54,28 +56,33 @@ $separador-color: #F4CB94;
 .opciones {
     display: flex;
     justify-content: space-around;
-    margin: 20px 0;
+    margin: 20px 10px;
 }
 
 .opcion {
     text-align: center;
     cursor: pointer;
+    border: 2px solid $opcion-borde-color;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: $opcion-borde-color;
+    width: 40%;
 }
 
 .opcion span {
-    color: $txt-gasto-color;
+    color: $txt-opciones-color;
     font-weight: bold;
     display: block;
     margin-top: 5px;
 }
 
 .opcion img {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
 }
 
-.boton-grande {
+.boton-ganancia {
     background-color: $btn-ganancia-color;
     color: $txt-ganancia-color;
     width: 90%;
@@ -86,24 +93,41 @@ $separador-color: #F4CB94;
     cursor: pointer;
 }
 
-.boton-grande .agregar-text {
+.boton-ganancia .agregar-text {
     font-weight: bold;
     font-size: 14px;
     text-align: left;
     display: block;
 }
 
-.boton-grande .ganancia-text,
-.boton-grande .gasto-text {
+.boton-ganancia .ganancia-text {
     font-size: 35px;
     text-align: center;
-    
     font-weight: bold;
 }
 
-.boton-grande#gasto {
+.boton-gasto {
     background-color: $btn-gasto-color;
     color: $txt-gasto-color;
+    width: 90%;
+    border: none;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    cursor: pointer;
+}
+
+.boton-gasto .agregar-text {
+    font-weight: bold;
+    font-size: 14px;
+    text-align: left;
+    display: block;
+}
+
+.boton-gasto .gasto-text {
+    font-size: 35px;
+    text-align: center;
+    font-weight: bold;
 }
 
 .sobre-powi {
