@@ -10,7 +10,7 @@ $margin-bottom: 20px;
 }
 
 .header-ganancia {
-    display: flex;
+    display: grid;
     align-items: center;
 }
 .header-ganancia img {
@@ -21,13 +21,7 @@ $margin-bottom: 20px;
      margin-right: 10px;
   }
 
- .boton.volver {
-   margin-left: 0px;
-   height: 20px;
-   width: 20px;
-   margin-top: 10px;
- }
-    
+
 
 .titulo-ganancia {
     font-size: 36px;
@@ -39,11 +33,12 @@ $margin-bottom: 20px;
 .imagen-ganancia {
     max-width: 80%;
     height: auto;
-    margin-bottom: $margin-bottom;
 }
 
 .texto-cantidad {
-    font-size: 18px;
+    font-size: 30px;
+    font-weight: bold;
+    color: $txt-ganancia-color;
     text-align: center;
     margin-bottom: $margin-bottom;
 }
@@ -71,6 +66,7 @@ $margin-bottom: 20px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+
 
     &:hover {
         background-color: darken($btn-ganancia-color, 10%);

@@ -1476,7 +1476,7 @@
 58/workspaces/PocketWiseApp/node_modules/css-tree/lib/walker1724696150045078390 1
 46/workspaces/PocketWiseApp/node_modules/@parcel1724700908161318030 1
 51/workspaces/PocketWiseApp/node_modules/@swc/counter1724696145493078160 1
-56/workspaces/PocketWiseApp/dist/PocketWiseApp.59712999.js1724708024281676431 0
+56/workspaces/PocketWiseApp/dist/PocketWiseApp.59712999.js1724716147458985538 0
 53/workspaces/PocketWiseApp/node_modules/ordered-binary1724696147069078240 1
 61/workspaces/PocketWiseApp/node_modules/ordered-binary/LICENSE1724696145069078139 0
 54/workspaces/PocketWiseApp/node_modules/posthtml-render1724696145009078136 1
@@ -1791,7 +1791,7 @@
 52/workspaces/PocketWiseApp/node_modules/css-tree/dist1724696150357078405 1
 110/workspaces/PocketWiseApp/node_modules/@parcel/optimizer-htmlnano/node_modules/css-tree/lib/syntax/node/Raw.js1724696149557078365 0
 93/workspaces/PocketWiseApp/node_modules/@parcel/core/test/fixtures/targets-default-distdir-one1724696150369078406 1
-41/workspaces/PocketWiseApp/dist/index.html1724708024033676418 0
+41/workspaces/PocketWiseApp/dist/index.html1724716931314977431 0
 86/workspaces/PocketWiseApp/node_modules/@swc/helpers/cjs/_object_without_properties.cjs1724696148189078296 0
 84/workspaces/PocketWiseApp/node_modules/@swc/helpers/cjs/_tagged_template_literal.cjs1724696148281078301 0
 57/workspaces/PocketWiseApp/node_modules/css-tree/README.md1724696150385078407 0
@@ -1990,7 +1990,7 @@
 74/workspaces/PocketWiseApp/node_modules/css-select/lib/esm/pseudo-selectors1724696148689078321 1
 63/workspaces/PocketWiseApp/node_modules/js-yaml/lib/type/omap.js1724696147625078268 0
 98/workspaces/PocketWiseApp/node_modules/@parcel/optimizer-svgo/node_modules/mdn-data/css/units.json1724696148209078297 0
-53/workspaces/PocketWiseApp/dist/index.8c1c22dc.css.map1724708024061676420 0
+53/workspaces/PocketWiseApp/dist/index.8c1c22dc.css.map1724717448346972084 0
 58/workspaces/PocketWiseApp/node_modules/react-error-overlay1724696147069078240 1
 97/workspaces/PocketWiseApp/node_modules/csso/node_modules/css-tree/cjs/definition-syntax/parse.cjs1724696149097078342 0
 81/workspaces/PocketWiseApp/node_modules/caniuse-lite/data/features/wasm-signext.js1724696151869078482 0
@@ -2243,7 +2243,7 @@
 49/workspaces/PocketWiseApp/dist/index.ae5f119b.css1724696160693078926 0
 62/workspaces/PocketWiseApp/node_modules/color-convert/README.md1724696146201078196 0
 95/workspaces/PocketWiseApp/node_modules/@swc/helpers/cjs/_class_apply_descriptor_destructure.cjs1724696146633078218 0
-49/workspaces/PocketWiseApp/dist/index.8c1c22dc.css1724708024057676420 0
+49/workspaces/PocketWiseApp/dist/index.8c1c22dc.css1724717448342972084 0
 81/workspaces/PocketWiseApp/node_modules/caniuse-lite/data/features/style-scoped.js1724696151501078463 0
 63/workspaces/PocketWiseApp/node_modules/entities/lib/encode.d.ts1724696147525078263 0
 43/workspaces/PocketWiseApp/package-lock.json1724700908253318035 0
@@ -2398,7 +2398,7 @@
 79/workspaces/PocketWiseApp/node_modules/@babel/highlight/node_modules/color-name1724696146825078227 1
 91/workspaces/PocketWiseApp/node_modules/@swc/helpers/src/_class_private_field_loose_base.mjs1724696151033078439 0
 86/workspaces/PocketWiseApp/node_modules/@parcel/transformer-image/src/validateConfig.js1724696145805078176 0
-53/workspaces/PocketWiseApp/dist/index.e4e574a2.css.map1724708024065676420 0
+53/workspaces/PocketWiseApp/dist/index.e4e574a2.css.map1724716147422985538 0
 61/workspaces/PocketWiseApp/node_modules/source-map/lib/util.js1724696146421078207 0
 98/workspaces/PocketWiseApp/node_modules/@parcel/optimizer-svgo/node_modules/csso/lib/replace/Url.js1724696148653078320 0
 71/workspaces/PocketWiseApp/node_modules/cosmiconfig/dist/ExplorerSync.js1724696145053078138 0
@@ -2420,7 +2420,7 @@
 105/workspaces/PocketWiseApp/node_modules/@parcel/optimizer-svgo/node_modules/mdn-data/css/units.schema.json1724696148229078298 0
 59/workspaces/PocketWiseApp/node_modules/@lmdb/lmdb-linux-x641724696149313078353 1
 64/workspaces/PocketWiseApp/node_modules/sass/types/value/map.d.ts1724696150213078398 0
-30/workspaces/PocketWiseApp/dist1724708312177690931 1
+30/workspaces/PocketWiseApp/dist1724717448346972084 1
 107/workspaces/PocketWiseApp/node_modules/@parcel/optimizer-htmlnano/node_modules/svgo/plugins/minifyStyles.js1724696148189078296 0
 73/workspaces/PocketWiseApp/node_modules/cosmiconfig/dist/ExplorerSync.d.ts1724696147881078281 0
 87/workspaces/PocketWiseApp/node_modules/@parcel/optimizer-svgo/node_modules/csso/LICENSE1724696146717078222 0
@@ -2449,7 +2449,7 @@
 67/workspaces/PocketWiseApp/node_modules/source-map/lib/quick-sort.js1724696145249078148 0
 77/workspaces/PocketWiseApp/node_modules/@parcel/core/lib/public/BundleGraph.js1724696148773078326 0
 112/workspaces/PocketWiseApp/node_modules/@parcel/optimizer-htmlnano/node_modules/svgo/plugins/removeXMLProcInst.js1724696148761078325 0
-40/workspaces/PocketWiseApp/src/index.html1724708113297680914 0
+40/workspaces/PocketWiseApp/src/index.html1724716931218977432 0
 119/workspaces/PocketWiseApp/node_modules/@parcel/optimizer-htmlnano/node_modules/csso/lib/restructure/3-disjoinRuleset.js1724696146965078235 0
 89/workspaces/PocketWiseApp/node_modules/csso/node_modules/css-tree/lib/convertor/create.js1724696149613078368 0
 83/workspaces/PocketWiseApp/node_modules/@parcel/workers/lib/process/ProcessWorker.js1724696147949078284 0
@@ -2591,7 +2591,7 @@
 57/workspaces/PocketWiseApp/node_modules/mdn-data/README.md1724696148081078291 0
 89/workspaces/PocketWiseApp/node_modules/@parcel/reporter-dev-server/src/templates/404.html1724696145417078157 0
 76/workspaces/PocketWiseApp/node_modules/caniuse-lite/data/features/svg-img.js1724696151513078464 0
-52/workspaces/PocketWiseApp/dist/index.aa69868b.js.map1724708312177690931 0
+52/workspaces/PocketWiseApp/dist/index.aa69868b.js.map1724716147466985538 0
 57/workspaces/PocketWiseApp/node_modules/globals/index.d.ts1724696145409078156 0
 95/workspaces/PocketWiseApp/node_modules/@parcel/package-manager/test/fixtures/packages/peers-2.01724696148645078319 1
 78/workspaces/PocketWiseApp/node_modules/caniuse-lite/data/features/svg-html5.js1724696151509078463 0
@@ -2960,7 +2960,7 @@
 61/workspaces/PocketWiseApp/node_modules/@parcel/runtime-js/lib1724696147837078278 1
 62/workspaces/PocketWiseApp/node_modules/ordered-binary/index.js1724696146085078190 0
 81/workspaces/PocketWiseApp/node_modules/caniuse-lite/data/features/imagecapture.js1724696150605078418 0
-47/workspaces/PocketWiseApp/src/css/_general.scss1724704437829495801 0
+47/workspaces/PocketWiseApp/src/css/_general.scss1724757628955649420 0
 78/workspaces/PocketWiseApp/node_modules/cosmiconfig/dist/canUseDynamicImport.js1724696144821078127 0
 80/workspaces/PocketWiseApp/node_modules/@parcel/packager-html/src/HTMLPackager.js1724696145269078149 0
 81/workspaces/PocketWiseApp/node_modules/@swc/helpers/cjs/_wrap_async_generator.cjs1724696148605078317 0
@@ -3081,7 +3081,7 @@
 50/workspaces/PocketWiseApp/node_modules/.bin/parcel1724696156225078701 0
 65/workspaces/PocketWiseApp/node_modules/picomatch/lib/picomatch.js1724696146085078190 0
 113/workspaces/PocketWiseApp/node_modules/@parcel/optimizer-svgo/node_modules/css-tree/lib/definition-syntax/walk.js1724696149633078369 0
-49/workspaces/PocketWiseApp/dist/index.e4e574a2.css1724708024061676420 0
+49/workspaces/PocketWiseApp/dist/index.e4e574a2.css1724716147422985538 0
 93/workspaces/PocketWiseApp/node_modules/@swc/helpers/_/_skip_first_generator_next/package.json1724696150565078416 0
 86/workspaces/PocketWiseApp/node_modules/@swc/helpers/_/_object_without_properties_loose1724696150489078412 1
 87/workspaces/PocketWiseApp/node_modules/css-select/node_modules/domutils/lib/legacy.d.ts1724696148305078302 0
@@ -3305,7 +3305,7 @@
 83/workspaces/PocketWiseApp/node_modules/@parcel/optimizer-htmlnano/node_modules/csso1724696148761078325 1
 89/workspaces/PocketWiseApp/node_modules/@swc/helpers/esm/_iterable_to_array_limit_loose.js1724696149149078345 0
 105/workspaces/PocketWiseApp/node_modules/@parcel/optimizer-htmlnano/node_modules/svgo/plugins/cleanupIDs.js1724696147561078265 0
-48/workspaces/PocketWiseApp/dist/index.aa69868b.js1724708312177690931 0
+48/workspaces/PocketWiseApp/dist/index.aa69868b.js1724716147450985538 0
 76/workspaces/PocketWiseApp/node_modules/css-tree/cjs/syntax/atrule/import.cjs1724696148601078317 0
 110/workspaces/PocketWiseApp/node_modules/@parcel/optimizer-htmlnano/node_modules/css-tree/lib/tokenizer/utils.js1724696149657078370 0
 59/workspaces/PocketWiseApp/node_modules/color-name/README.md1724696145489078160 0
@@ -5413,7 +5413,7 @@
 87/workspaces/PocketWiseApp/node_modules/htmlnano/lib/modules/sortAttributesWithLists.mjs1724696149261078350 0
 84/workspaces/PocketWiseApp/node_modules/@swc/helpers/_/_class_call_check/package.json1724696149757078375 0
 89/workspaces/PocketWiseApp/node_modules/caniuse-lite/data/features/background-clip-text.js1724696148281078301 0
-48/workspaces/PocketWiseApp/src/css/_ganancia.scss1724704625773505266 0
+48/workspaces/PocketWiseApp/src/css/_ganancia.scss1724717448234972085 0
 86/workspaces/PocketWiseApp/node_modules/caniuse-lite/data/features/template-literals.js1724696151525078464 0
 75/workspaces/PocketWiseApp/node_modules/caniuse-lite/data/features/tls1-1.js1724696151545078465 0
 81/workspaces/PocketWiseApp/node_modules/caniuse-lite/data/features/css-rrggbbaa.js1724696149781078376 0
@@ -5577,7 +5577,7 @@
 82/workspaces/PocketWiseApp/node_modules/caniuse-lite/data/features/sharedworkers.js1724696151469078461 0
 47/workspaces/PocketWiseApp/node_modules/error-ex1724696144433078107 1
 87/workspaces/PocketWiseApp/node_modules/caniuse-lite/data/features/css-math-functions.js1724696149653078370 0
-60/workspaces/PocketWiseApp/dist/PocketWiseApp.59712999.js.map1724708024289676431 0
+60/workspaces/PocketWiseApp/dist/PocketWiseApp.59712999.js.map1724716147470985538 0
 104/workspaces/PocketWiseApp/node_modules/@parcel/optimizer-svgo/node_modules/css-select/lib/index.d.ts.map1724696147749078274 0
 93/workspaces/PocketWiseApp/node_modules/caniuse-lite/data/features/wasm-nontrapping-fptoint.js1724696151865078481 0
 74/workspaces/PocketWiseApp/node_modules/caniuse-lite/data/features/forms.js1724696150429078409 0
