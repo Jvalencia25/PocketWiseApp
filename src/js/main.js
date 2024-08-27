@@ -26,13 +26,40 @@ function init(){
         cargarSeccion("home");
     }, 3000);
 
-    document.getElementById("btn_aceptar_ganancia").addEventListener("click", function() {
-        const inputGanancia = document.getElementById("input-ganancia").value;
-        const cantidad = parseFloat(inputGanancia.replace(/[^0-9.]/g, ''));
-        if (!isNaN(cantidad) && cantidad>0) {
-            const saldoElement = document.getElementById("saldo-usuario");
-            const saldoActual = parseFloat(saldoElement.textContent.replace(/[^0-9.]/g, '')) || 0;
-            const nuevoSaldo = saldoActual + cantidad;
+    document.getElementById("btn_aceptar_ganancia").addEventListener("click", sumarSaldo);
+    document.getElementById("btn_aceptar_gasto").addEventListener("click", restarSaldo);
+}
+
+function sumarSaldo(){
+    const inputGanancia = document.getElementById("input-ganancia").value;
+    const cantidad = parseFloat(inputGanancia.replace(/[^0-9.]/g, ''));
+    if (!isNaN(cantidad) && cantidad>0) {
+        const saldoElement = document.getElementById("saldo-usuario");
+        const saldoActual = parseFloat(saldoElement.textContent.replace(/[^0-9.]/g, '')) || 0;
+        const nuevoSaldo = saldoActual + cantidad;
+        saldoElement.textContent = formatCurrency(nuevoSaldo);
+        // Obtener fecha y hora actuales
+        const { fecha, hora } = getCurrentDateTime();
+            
+        // Crear una instancia de Movimiento
+        const movimiento = new Movimiento(cantidad, 'ganancia', hora, fecha);
+            
+        listaMovimientos.push(movimiento);
+        document.getElementById("input-ganancia").value = "";
+    }
+    else window.alert("Debes ingresar un número que sea más grande que 0!");
+    cargarSeccion("home");
+}
+
+function restarSaldo(){
+    const inputGasto = document.getElementById("input-gasto").value;
+    const cantidad = parseFloat(inputGasto.replace(/[^0-9.]/g, ''));
+    if (!isNaN(cantidad) && cantidad>0) {
+        const saldoElement = document.getElementById("saldo-usuario");
+        const saldoActual = parseFloat(saldoElement.textContent.replace(/[^0-9.]/g, '')) || 0;
+
+        if (saldoActual >= cantidad){
+            const nuevoSaldo = saldoActual - cantidad;
             saldoElement.textContent = formatCurrency(nuevoSaldo);
             // Obtener fecha y hora actuales
             const { fecha, hora } = getCurrentDateTime();
@@ -43,9 +70,12 @@ function init(){
             listaMovimientos.push(movimiento);
             document.getElementById("input-ganancia").value = "";
         }
-        cargarSeccion("home");
-    });
+        else window.alert("No puedes hacer ese gasto! No tienes saldo");
+    }
+    else window.alert("Debes ingresar un número que sea más grande que 0!");
+    cargarSeccion("home");
 }
+
 class Movimiento {
     constructor(valor, tipo, hora, fecha) {
         this.valor = valor;
