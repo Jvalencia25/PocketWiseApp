@@ -1,4 +1,74 @@
-#gasto{
-    background: $fondo_sobre;
+$btn-ganancia-color: #B9DFD2;
+$txt-ganancia-color: #67C8A1;
+$borde-color: #F3C1CA;
+$padding: 20px;
+$margin-bottom: 20px;
+
+#gasto {
+    background: $fondo-sobre;
     position: absolute;
+}
+
+.header-gasto {
+    display: grid;
+    align-items: center;
+}
+.header-gasto img {
+    height: 40px;
+}
+
+.icono-redireccion {
+     margin-right: 10px;
+  }
+
+
+
+.titulo-gasto {
+    font-size: 36px;
+    color: $txt-ganancia-color;
+    text-align: center;
+    margin-bottom: $margin-bottom;
+}
+
+.imagen-gasto {
+    max-width: 80%;
+    height: auto;
+}
+
+.texto-cantidad {
+    font-size: 30px;
+    font-weight: bold;
+    color: $txt-ganancia-color;
+    text-align: center;
+    margin-bottom: $margin-bottom;
+}
+
+.input-gasto {
+    width: 80%;
+    padding: 10px;
+    border: 2px solid $borde-color;
+    border-radius: 10px;
+    margin-bottom: $margin-bottom;
+    font-size: 16px;
+    text-align: center;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.boton-aceptar {
+    background-color: $btn-ganancia-color;
+    color: $txt-ganancia-color;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+
+    &:hover {
+        background-color: darken($btn-ganancia-color, 10%);
+   }
 }
