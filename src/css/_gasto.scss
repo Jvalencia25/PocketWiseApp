@@ -1,6 +1,3 @@
-$btn-ganancia-color: #B9DFD2;
-$txt-ganancia-color: #67C8A1;
-$borde-color: #F3C1CA;
 $padding: 20px;
 $margin-bottom: 20px;
 
@@ -25,7 +22,7 @@ $margin-bottom: 20px;
 
 .titulo-gasto {
     font-size: 36px;
-    color: $txt-ganancia-color;
+    color: $txt-gasto-color;
     text-align: center;
     margin-bottom: $margin-bottom;
 }
@@ -35,10 +32,10 @@ $margin-bottom: 20px;
     height: auto;
 }
 
-.texto-cantidad {
+#gasto .texto-cantidad {
     font-size: 30px;
     font-weight: bold;
-    color: $txt-ganancia-color;
+    color: $txt-gasto-color;
     text-align: center;
     margin-bottom: $margin-bottom;
 }
@@ -57,9 +54,9 @@ $margin-bottom: 20px;
     }
 }
 
-.boton-aceptar {
-    background-color: $btn-ganancia-color;
-    color: $txt-ganancia-color;
+#gasto .boton-aceptar {
+    background-color: $btn-gasto-color;
+    color: $txt-gasto-color;
     border: none;
     padding: 10px 20px;
     border-radius: 10px;
@@ -69,6 +66,6 @@ $margin-bottom: 20px;
 
 
     &:hover {
-        background-color: darken($btn-ganancia-color, 10%);
+        background-color: darken($btn-gasto-color, 10%);
    }
 }
