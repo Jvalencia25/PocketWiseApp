@@ -1,0 +1,71 @@
+$padding: 20px;
+$margin-bottom: 20px;
+
+#ganancia {
+    background: $fondo-sobre;
+    position: absolute;
+}
+
+.header-ganancia {
+    display: grid;
+    align-items: center;
+}
+.header-ganancia img {
+    height: 40px;
+}
+
+.icono-redireccion {
+     margin-right: 10px;
+  }
+
+
+
+.titulo-ganancia {
+    font-size: 36px;
+    color: $txt-ganancia-color;
+    text-align: center;
+    margin-bottom: $margin-bottom;
+}
+
+.imagen-ganancia {
+    max-width: 80%;
+    height: auto;
+}
+
+.texto-cantidad {
+    font-size: 30px;
+    font-weight: bold;
+    color: $txt-ganancia-color;
+    text-align: center;
+    margin-bottom: $margin-bottom;
+}
+
+.input-ganancia {
+    width: 80%;
+    padding: 10px;
+    border: 2px solid $borde-color;
+    border-radius: 10px;
+    margin-bottom: $margin-bottom;
+    font-size: 16px;
+    text-align: center;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.boton-aceptar {
+    background-color: $btn-ganancia-color;
+    color: $txt-ganancia-color;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+
+    &:hover {
+        background-color: darken($btn-ganancia-color, 10%);
+   }
+}

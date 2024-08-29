@@ -1,0 +1,19 @@
+{
+  "name": "pocketwiseapp",
+  "version": "1.0.0",
+  "description": "Aplicación híbrida para el curso de Aplicaciones Móviles",
+  "scripts": {
+    "build": "parcel build ./src/index.html",
+    "start": "parcel ./src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.12.0",
+    "parcel": "^2.12.0"
+  },
+  "dependencies": {
+    "animate.css": "^4.1.1"
+  }
+}
