@@ -1,14 +1,12 @@
 let refs = [];
 let btns = [];
-let x;
-let count;
-let current;
-let percent;
-let z = [];
+let saldo = 0;
+const listaMovimientos = [];
 
 window.onload = init;
 
-function init(){
+function init() {
+    // Inicialización de elementos del primer script
     refs["splash"] = document.getElementById("splash");
     refs["home"] = document.getElementById("home");
     refs["resumen"] = document.getElementById("resumen");
@@ -29,7 +27,7 @@ function init(){
 
     renderizarMovimientos(listaMovimientos);
 
-    setTimeout(()=>{
+    setTimeout(() => {
         cargarSeccion("home");
     }, 3000);
 
@@ -37,8 +35,19 @@ function init(){
     document.getElementById("btn_aceptar_gasto").addEventListener("click", restarSaldo);
     document.getElementById("btn_resumen").addEventListener("click", () => renderizarMovimientos(listaMovimientos));
 
+    // Inicialización de elementos del segundo script
     document.querySelectorAll('.mm-prev-btn').forEach(function(btn) {
         btn.style.display = 'none';
+    });
+
+    initSurvey();
+}
+
+function initSurvey() {
+    // Código del segundo script
+    document.querySelectorAll('.mm-survey-container .mm-survey-page').forEach(function(item) {
+        var page = item.getAttribute('data-page');
+        item.classList.add('mm-page-' + page);
     });
 
     getCurrentSlide();
@@ -49,14 +58,9 @@ function init(){
     deliverStatus();
     submitData();
     goBack();
-
-    document.querySelectorAll('.mm-survey-container .mm-survey-page').forEach(function(item) {
-        var page = item.getAttribute('data-page');
-        item.classList.add('mm-page-' + page);
-    });
 }
 
-function sumarSaldo(){
+function sumarSaldo() {
     const cantidad = parseFloat(document.getElementById("input-ganancia").value.replace(/[^0-9.]/g, ''));
     
     if (!isNaN(cantidad) && cantidad > 0) {
@@ -76,7 +80,7 @@ function sumarSaldo(){
     }
 }
 
-function restarSaldo(){
+function restarSaldo() {
     const cantidad = parseFloat(document.getElementById("input-gasto").value.replace(/[^0-9.]/g, ''));
 
     if (!isNaN(cantidad) && cantidad > 0) {
@@ -111,9 +115,6 @@ class Movimiento {
     }
 }
 
-let saldo = 0;
-const listaMovimientos = [];
-
 function getCurrentDateTime() {
     const now = new Date();
     const fecha = now.toISOString().split('T')[0]; // YYYY-MM-DD
@@ -125,20 +126,18 @@ function formatCurrency(amount) {
     return amount.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 });
 }
 
-function agruparPorFecha(movimientos){
+function agruparPorFecha(movimientos) {
     return movimientos.reduce((grupos, movimiento) => {
         const fecha = movimiento.fecha;
-        if (!grupos[fecha]){
+        if (!grupos[fecha]) {
             grupos[fecha] = [];
         }
-        grupos[fecha].push(movimiento)
+        grupos[fecha].push(movimiento);
         return grupos;
     }, {});
 }
 
-function renderizarMovimientos(movimientos){
-    
-    // Ordenar los movimientos de más reciente a más antiguo
+function renderizarMovimientos(movimientos) {
     movimientos.sort((a, b) => {
         if (a.fecha === b.fecha) {
             return new Date(`1970-01-01T${b.hora}`) - new Date(`1970-01-01T${a.hora}`);
@@ -149,10 +148,10 @@ function renderizarMovimientos(movimientos){
     const container = document.getElementById('movimientos-container');
     container.innerHTML = '';
 
-    if(movimientos.length){
+    if (movimientos.length) {
         const gruposPorFecha = agruparPorFecha(movimientos);
         
-        for (const fecha in gruposPorFecha){
+        for (const fecha in gruposPorFecha) {
             const grupo = gruposPorFecha[fecha];
 
             const grupoDiv = document.createElement('div');
@@ -163,7 +162,7 @@ function renderizarMovimientos(movimientos){
             fechaTitulo.textContent = `Fecha: ${fecha}`;
             grupoDiv.appendChild(fechaTitulo);
 
-            grupo.forEach(movimiento =>{
+            grupo.forEach(movimiento => {
                 const movimientoDiv = document.createElement('div');
                 movimientoDiv.classList.add('movimiento', `tipo-${movimiento.tipo}`);
 
@@ -177,8 +176,8 @@ function renderizarMovimientos(movimientos){
                 const valorDiv = document.createElement('div');
                 valorDiv.classList.add('valor');
 
-                if (movimiento.tipo == 'ganancia') valorDiv.textContent = '+'+formatCurrency(movimiento.valor);
-                else valorDiv.textContent = '-'+formatCurrency(movimiento.valor);
+                if (movimiento.tipo == 'ganancia') valorDiv.textContent = '+' + formatCurrency(movimiento.valor);
+                else valorDiv.textContent = '-' + formatCurrency(movimiento.valor);
 
                 const horaDiv = document.createElement('div');
                 horaDiv.classList.add('hora');
@@ -201,23 +200,24 @@ function renderizarMovimientos(movimientos){
 
         const emptyDiv = document.createElement('div');
         emptyDiv.classList.add('empty');
-        emptyDiv.textContent = 'No hay nada aqui hasta que agregues un gasto o una ganancia';
+        emptyDiv.textContent = 'No hay nada aquí hasta que agregues un gasto o una ganancia';
         emptyDiv.classList.add('valor');
         container.appendChild(emptyDiv);
         container.appendChild(img);
     }
 }
 
-function asignarVolver(){
+function asignarVolver() {
     let btns_volver = document.querySelectorAll(".volver");
     for (let i = 0; i < btns_volver.length; i++) {
-        btns_volver[i].addEventListener("click", ()=>{
+        btns_volver[i].addEventListener("click", () => {
             cargarSeccion("home");
+            resetSurvey();
         });
     }
 }
 
-function asignarEventosMenu(){
+function asignarEventosMenu() {
     btns["btn_resumen"].addEventListener("click", cambiarSeccion);
     btns["btn_ganancia"].addEventListener("click", cambiarSeccion);
     btns["btn_gasto"].addEventListener("click", cambiarSeccion);
@@ -225,30 +225,30 @@ function asignarEventosMenu(){
     btns["btn_encuesta"].addEventListener("click", cambiarSeccion);
 }
 
-function ocultar(){
+function ocultar() {
     for (let key in refs) {
         refs[key].classList.add("ocultar");
     }
 }
 
-function cambiarSeccion(e){ 
+function cambiarSeccion(e) {
     let targetId = e.currentTarget.id;  
     let seccion = targetId.split("_")[1]; 
     cargarSeccion(seccion);
 }
 
-function cargarSeccion(seccion){
+function cargarSeccion(seccion) {
     ocultar();
     refs[seccion].classList.remove("ocultar");
     refs[seccion].classList.add("animate__animated", "animate__fadeIn");
 }
 
-function guardarDatos(nuevoSaldo, listaMovimientos){
+function guardarDatos(nuevoSaldo, listaMovimientos) {
     localStorage.setItem("saldo-usuario", nuevoSaldo);
     localStorage.setItem("movimientos", JSON.stringify(listaMovimientos));
 }
 
-function cargarDatos(){
+function cargarDatos() {
     const saldoGuardado = localStorage.getItem("saldo-usuario");
     const movimientosGuardados = localStorage.getItem("movimientos");
 
@@ -258,11 +258,18 @@ function cargarDatos(){
     }
 
     if (movimientosGuardados) {
-        listaMovimientos.push(...JSON.parse(movimientosGuardados));
+        const movimientos = JSON.parse(movimientosGuardados);
+        movimientos.forEach(movimiento => {
+            listaMovimientos.push(new Movimiento(movimiento.valor, movimiento.tipo, movimiento.hora, movimiento.fecha));
+        });
     }
 }
 
-// Encuesta JS
+// Funciones del segundo script
+var x;
+var count;
+var percent;
+var z = [];
 
 function getCount() {
     count = document.querySelectorAll('.mm-survey-page').length;
@@ -277,7 +284,6 @@ function goToNext() {
             current = x + 1;
             var g = current / count;
             buildProgress(g);
-            var y = count + 1;
             getButtons();
             document.querySelectorAll('.mm-survey-page').forEach(function(page) {
                 page.classList.remove('active');
@@ -322,7 +328,6 @@ function goToPrev() {
             current = x - 1;
             var g = current / count;
             buildProgress(g);
-            var y = count + 1;
             getButtons();
             document.querySelectorAll('.mm-survey-page').forEach(function(page) {
                 page.classList.remove('active');
@@ -340,7 +345,6 @@ function goBackSlide(x) {
 }
 
 function getButtons() {
-    var h = count + 1;
     if (x === 1) {
         document.querySelectorAll('.mm-prev-btn').forEach(function(btn) {
             btn.style.display = 'none';
@@ -367,9 +371,13 @@ function deliverProgress(percent) {
 }
 
 function checkStatus() {
+    // Deshabilitar el botón de siguiente por defecto
     document.querySelector('.mm-next-btn button').disabled = true;
+
+    // Escuchar cambios en los inputs de radio de la página actual
     document.querySelectorAll('.mm-survey-page.active .mm-survey-item input').forEach(function(input) {
         input.addEventListener('change', function() {
+            // Habilitar el botón de siguiente cuando se selecciona una opción
             if (document.querySelector('.mm-survey-page.active input[type="radio"]:checked')) {
                 document.querySelector('.mm-next-btn button').disabled = false;
             }
@@ -408,38 +416,71 @@ function goBack() {
         btn.addEventListener('click', function() {
             document.querySelector('.mm-survey-bottom').style.display = 'block';
             document.querySelector('.mm-survey-results').style.display = 'none';
+            cargarSeccion("home");
+            resetSurvey();
         });
     });
+}
+function resetSurvey() {
+    // Reiniciar el progreso
+    deliverProgress(0);
+
+    // Reiniciar el estado de las páginas
+    document.querySelectorAll('.mm-survey-page').forEach(function(page) {
+        page.classList.remove('active');
+    });
+    document.querySelector('.mm-page-1').classList.add('active');
+
+    // Reiniciar los botones
+    document.querySelector('.mm-prev-btn').style.display = 'none';
+    document.querySelector('.mm-next-btn').style.display = 'block';
+    document.querySelector('.mm-next-btn button').disabled = true;
+    document.querySelector('.mm-finish-btn').style.display = 'none'; // Hide finish button on reset
+
+    // Limpiar los resultados
+    document.querySelector('.mm-survey-results-score').innerText = '';
+    document.querySelector('.mm-survey-results-container').innerHTML = '';
+
+    // Desmarcar todas las respuestas seleccionadas
+    document.querySelectorAll('.mm-survey-item input:checked').forEach(function(input) {
+        input.checked = false;
+    });
+
+    // Reiniciar la variable de seguimiento
+    x = 1;
+    z = [];
+
+    // Volver a habilitar los botones de siguiente y anterior según corresponda
+    getButtons();
 }
 
 function collectData() {
     var map = {};
     var ax = ['Si', 'Si', 'No', 'Tengo un lugar en mente', 'No', 'No', 'calmado y neutral'];
-    var total = 0;
     var ttl = 0;
 
     document.querySelectorAll('.mm-survey-item input:checked').forEach(function(item) {
         var data = item.value;
         var name = item.getAttribute('data-item');
-        var n = parseInt(data);
         map[name] = data;
     });
 
+    // Calcula el total de respuestas correctas
     for (var i = 1; i <= count; i++) {
         if (map[i] === ax[i - 1]) {
             ttl++;
         }
     }
-
+    
+    // Calcula el porcentaje de aciertos
     var results = ((ttl / count) * 100).toFixed(0);
-
+    
+    // Mostrar el resultado y la imagen correspondiente
     if (results > 50) {
         document.querySelector('.mm-survey-results-score').innerText = '¡Puedes comprarlo!';
-        document.querySelector('.mm-survey-results .mm-result-title').innerText = '¡Felicidades!';
-        document.querySelector('.mm-survey-results .mm-results-icon').innerHTML = '<i class="fa fa-check-circle"></i>';
+        document.querySelector('.mm-survey-results-container').innerHTML += '<img src="ruta_de_la_imagen_positiva.png" alt="Resultado Positivo">';
     } else {
-        document.querySelector('.mm-survey-results-score').innerText = 'Mejor espera un poco más.';
-        document.querySelector('.mm-survey-results .mm-result-title').innerText = '¡Ups!';
-        document.querySelector('.mm-survey-results .mm-results-icon').innerHTML = '<i class="fa fa-times-circle"></i>';
+        document.querySelector('.mm-survey-results-score').innerText = 'Deberías pensarlo un poco mejor';
+        document.querySelector('.mm-survey-results-container').innerHTML += '<img src="ruta_de_la_imagen_negativa.png" alt="Resultado Negativo">';
     }
 }
