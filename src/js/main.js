@@ -35,55 +35,49 @@ function init(){
 }
 
 function sumarSaldo(){
-    const inputGanancia = document.getElementById("input-ganancia").value;
-    const cantidad = parseFloat(inputGanancia.replace(/[^0-9.]/g, ''));
-    if (!isNaN(cantidad) && cantidad>0) {
-        const saldoElement = document.getElementById("saldo-usuario");
-        const saldoActual = parseFloat(saldoElement.textContent.replace(/[^0-9.]/g, '')) || 0;
-        const nuevoSaldo = saldoActual + cantidad;
-        saldoElement.textContent = formatCurrency(nuevoSaldo);
-        // Obtener fecha y hora actuales
+    const cantidad = parseFloat(document.getElementById("input-ganancia").value.replace(/[^0-9.]/g, ''));
+    
+    if (!isNaN(cantidad) && cantidad > 0) {
+        saldo += cantidad;
+        document.getElementById("saldo-usuario").textContent = formatCurrency(saldo);
+
         const { fecha, hora } = getCurrentDateTime();
-            
-        // Crear una instancia de Movimiento
-        const movimiento = new Movimiento(cantidad, 'ganancia', hora, fecha);
-            
-        listaMovimientos.push(movimiento);
+        listaMovimientos.push(new Movimiento(cantidad, 'ganancia', hora, fecha));
+
+        guardarDatos(saldo, listaMovimientos);
+
         document.getElementById("input-ganancia").value = "";
 
-        saldo = nuevoSaldo;
-        guardarDatos(nuevoSaldo, listaMovimientos);
+        cargarSeccion("home");
+    } else {
+        window.alert("Debes ingresar un número que sea más grande que 0!");
     }
-    else window.alert("Debes ingresar un número que sea más grande que 0!");
-    cargarSeccion("home");
 }
 
 function restarSaldo(){
-    const inputGasto = document.getElementById("input-gasto").value;
-    const cantidad = parseFloat(inputGasto.replace(/[^0-9.]/g, ''));
-    if (!isNaN(cantidad) && cantidad>0) {
-        const saldoElement = document.getElementById("saldo-usuario");
-        const saldoActual = parseFloat(saldoElement.textContent.replace(/[^0-9.]/g, '')) || 0;
+    const cantidad = parseFloat(document.getElementById("input-gasto").value.replace(/[^0-9.]/g, ''));
 
-        if (saldoActual >= cantidad){
-            const nuevoSaldo = saldoActual - cantidad;
-            saldoElement.textContent = formatCurrency(nuevoSaldo);
-            // Obtener fecha y hora actuales
+    if (!isNaN(cantidad) && cantidad > 0) {
+        const saldoActual = parseFloat(document.getElementById("saldo-usuario").textContent.replace(/[^0-9.]/g, '')) || saldo;
+
+        if (saldoActual >= cantidad) {
+            saldo -= cantidad;
+            document.getElementById("saldo-usuario").textContent = formatCurrency(saldo);
+
             const { fecha, hora } = getCurrentDateTime();
-            
-            // Crear una instancia de Movimiento
-            const movimiento = new Movimiento(cantidad, 'gasto', hora, fecha);
-            
-            listaMovimientos.push(movimiento);
+            listaMovimientos.push(new Movimiento(cantidad, 'gasto', hora, fecha));
+
+            guardarDatos(saldo, listaMovimientos);
+
             document.getElementById("input-gasto").value = "";
-            
-            saldo = nuevoSaldo;
-            guardarDatos(nuevoSaldo, listaMovimientos);
+
+            cargarSeccion("home");
+        } else {
+            window.alert("No puedes hacer ese gasto! No tienes saldo suficiente.");
         }
-        else window.alert("No puedes hacer ese gasto! No tienes saldo");
+    } else {
+        window.alert("Debes ingresar un número que sea más grande que 0!");
     }
-    else window.alert("Debes ingresar un número que sea más grande que 0!");
-    cargarSeccion("home");
 }
 
 class Movimiento {
