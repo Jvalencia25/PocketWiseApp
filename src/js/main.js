@@ -117,6 +117,14 @@ function agruparPorFecha(movimientos){
 
 function renderizarMovimientos(movimientos){
     
+    // Ordenar los movimientos de más reciente a más antiguo
+    movimientos.sort((a, b) => {
+        if (a.fecha === b.fecha) {
+            return new Date(`1970-01-01T${b.hora}`) - new Date(`1970-01-01T${a.hora}`);
+        }
+        return new Date(b.fecha) - new Date(a.fecha);
+    });
+
     const container = document.getElementById('movimientos-container');
     container.innerHTML = '';
 
