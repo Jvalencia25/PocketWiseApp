@@ -21,6 +21,9 @@ function init(){
 
     asignarEventosMenu();
     asignarVolver();
+    cargarDatos();
+
+    renderizarMovimientos(listaMovimientos);
 
     setTimeout(()=>{
         cargarSeccion("home");
@@ -32,49 +35,49 @@ function init(){
 }
 
 function sumarSaldo(){
-    const inputGanancia = document.getElementById("input-ganancia").value;
-    const cantidad = parseFloat(inputGanancia.replace(/[^0-9.]/g, ''));
-    if (!isNaN(cantidad) && cantidad>0) {
-        const saldoElement = document.getElementById("saldo-usuario");
-        const saldoActual = parseFloat(saldoElement.textContent.replace(/[^0-9.]/g, '')) || 0;
-        const nuevoSaldo = saldoActual + cantidad;
-        saldoElement.textContent = formatCurrency(nuevoSaldo);
-        // Obtener fecha y hora actuales
+    const cantidad = parseFloat(document.getElementById("input-ganancia").value.replace(/[^0-9.]/g, ''));
+    
+    if (!isNaN(cantidad) && cantidad > 0) {
+        saldo += cantidad;
+        document.getElementById("saldo-usuario").textContent = formatCurrency(saldo);
+
         const { fecha, hora } = getCurrentDateTime();
-            
-        // Crear una instancia de Movimiento
-        const movimiento = new Movimiento(cantidad, 'ganancia', hora, fecha);
-            
-        listaMovimientos.push(movimiento);
+        listaMovimientos.push(new Movimiento(cantidad, 'ganancia', hora, fecha));
+
+        guardarDatos(saldo, listaMovimientos);
+
         document.getElementById("input-ganancia").value = "";
+
+        cargarSeccion("home");
+    } else {
+        window.alert("Debes ingresar un número que sea más grande que 0!");
     }
-    else window.alert("Debes ingresar un número que sea más grande que 0!");
-    cargarSeccion("home");
 }
 
 function restarSaldo(){
-    const inputGasto = document.getElementById("input-gasto").value;
-    const cantidad = parseFloat(inputGasto.replace(/[^0-9.]/g, ''));
-    if (!isNaN(cantidad) && cantidad>0) {
-        const saldoElement = document.getElementById("saldo-usuario");
-        const saldoActual = parseFloat(saldoElement.textContent.replace(/[^0-9.]/g, '')) || 0;
+    const cantidad = parseFloat(document.getElementById("input-gasto").value.replace(/[^0-9.]/g, ''));
 
-        if (saldoActual >= cantidad){
-            const nuevoSaldo = saldoActual - cantidad;
-            saldoElement.textContent = formatCurrency(nuevoSaldo);
-            // Obtener fecha y hora actuales
+    if (!isNaN(cantidad) && cantidad > 0) {
+        const saldoActual = parseFloat(document.getElementById("saldo-usuario").textContent.replace(/[^0-9.]/g, '')) || saldo;
+
+        if (saldoActual >= cantidad) {
+            saldo -= cantidad;
+            document.getElementById("saldo-usuario").textContent = formatCurrency(saldo);
+
             const { fecha, hora } = getCurrentDateTime();
-            
-            // Crear una instancia de Movimiento
-            const movimiento = new Movimiento(cantidad, 'gasto', hora, fecha);
-            
-            listaMovimientos.push(movimiento);
+            listaMovimientos.push(new Movimiento(cantidad, 'gasto', hora, fecha));
+
+            guardarDatos(saldo, listaMovimientos);
+
             document.getElementById("input-gasto").value = "";
+
+            cargarSeccion("home");
+        } else {
+            window.alert("No puedes hacer ese gasto! No tienes saldo suficiente.");
         }
-        else window.alert("No puedes hacer ese gasto! No tienes saldo");
+    } else {
+        window.alert("Debes ingresar un número que sea más grande que 0!");
     }
-    else window.alert("Debes ingresar un número que sea más grande que 0!");
-    cargarSeccion("home");
 }
 
 class Movimiento {
@@ -86,6 +89,7 @@ class Movimiento {
     }
 }
 
+let saldo=0;
 const listaMovimientos = [];
 
 function getCurrentDateTime() {
@@ -112,52 +116,76 @@ function agruparPorFecha(movimientos){
 }
 
 function renderizarMovimientos(movimientos){
+    
+    // Ordenar los movimientos de más reciente a más antiguo
+    movimientos.sort((a, b) => {
+        if (a.fecha === b.fecha) {
+            return new Date(`1970-01-01T${b.hora}`) - new Date(`1970-01-01T${a.hora}`);
+        }
+        return new Date(b.fecha) - new Date(a.fecha);
+    });
+
     const container = document.getElementById('movimientos-container');
     container.innerHTML = '';
 
-    const gruposPorFecha = agruparPorFecha(movimientos);
-    
-    for (const fecha in gruposPorFecha){
-        const grupo = gruposPorFecha[fecha];
+    if(movimientos.length){
+        const gruposPorFecha = agruparPorFecha(movimientos);
+        
+        for (const fecha in gruposPorFecha){
+            const grupo = gruposPorFecha[fecha];
 
-        const grupoDiv = document.createElement('div');
-        grupoDiv.classList.add('movimiento-grupo');
+            const grupoDiv = document.createElement('div');
+            grupoDiv.classList.add('movimiento-grupo');
 
-        const fechaTitulo = document.createElement('div');
-        fechaTitulo.classList.add('fecha-titulo');
-        fechaTitulo.textContent = `Fecha: ${fecha}`;
-        grupoDiv.appendChild(fechaTitulo);
+            const fechaTitulo = document.createElement('div');
+            fechaTitulo.classList.add('fecha-titulo');
+            fechaTitulo.textContent = `Fecha: ${fecha}`;
+            grupoDiv.appendChild(fechaTitulo);
 
-        grupo.forEach(movimiento =>{
-            const movimientoDiv = document.createElement('div');
-            movimientoDiv.classList.add('movimiento', `tipo-${movimiento.tipo}`);
+            grupo.forEach(movimiento =>{
+                const movimientoDiv = document.createElement('div');
+                movimientoDiv.classList.add('movimiento', `tipo-${movimiento.tipo}`);
 
-            const tipoDiv = document.createElement('div');
-            tipoDiv.classList.add('tipo');
-            tipoDiv.textContent = movimiento.tipo.charAt(0).toUpperCase() + movimiento.tipo.slice(1);
+                const tipoDiv = document.createElement('div');
+                tipoDiv.classList.add('tipo');
+                tipoDiv.textContent = movimiento.tipo.charAt(0).toUpperCase() + movimiento.tipo.slice(1);
 
-            const detallesDiv = document.createElement('div');
-            detallesDiv.classList.add('detalles');
+                const detallesDiv = document.createElement('div');
+                detallesDiv.classList.add('detalles');
 
-            const valorDiv = document.createElement('div');
-            valorDiv.classList.add('valor');
+                const valorDiv = document.createElement('div');
+                valorDiv.classList.add('valor');
 
-            if (movimiento.tipo=='ganancia') valorDiv.textContent = '+'+formatCurrency(movimiento.valor);
-            else valorDiv.textContent = '-'+formatCurrency(movimiento.valor);
+                if (movimiento.tipo=='ganancia') valorDiv.textContent = '+'+formatCurrency(movimiento.valor);
+                else valorDiv.textContent = '-'+formatCurrency(movimiento.valor);
 
-            const horaDiv = document.createElement('div');
-            horaDiv.classList.add('hora');
-            horaDiv.textContent = movimiento.hora;
+                const horaDiv = document.createElement('div');
+                horaDiv.classList.add('hora');
+                horaDiv.textContent = movimiento.hora;
 
-            detallesDiv.appendChild(valorDiv);
-            detallesDiv.appendChild(horaDiv);
+                detallesDiv.appendChild(valorDiv);
+                detallesDiv.appendChild(horaDiv);
 
-            movimientoDiv.appendChild(tipoDiv);
-            movimientoDiv.appendChild(detallesDiv);
-            grupoDiv.appendChild(movimientoDiv);
-        });
+                movimientoDiv.appendChild(tipoDiv);
+                movimientoDiv.appendChild(detallesDiv);
+                grupoDiv.appendChild(movimientoDiv);
+            });
 
-        container.appendChild(grupoDiv);
+            container.appendChild(grupoDiv);
+        }
+    }
+    else{
+
+        const img = document.createElement('img');
+        img.src = '../img/placeholder_empty.jpg';
+        img.classList.add("imagen");
+
+        const emptyDiv = document.createElement('div');
+        emptyDiv.classList.add('empty');
+        emptyDiv.textContent = 'No hay nada aqui hasta que agregues un gasto o una ganancia';
+        emptyDiv.classList.add('valor');
+        container.appendChild(emptyDiv);
+        container.appendChild(img);
     }
 }
 
@@ -193,4 +221,26 @@ function cargarSeccion(seccion){
     ocultar();
     refs[seccion].classList.remove("ocultar");
     refs[seccion].classList.add("animate__animated", "animate__fadeIn");
+}
+
+function guardarDatos(nuevoSaldo, listaMovimientos){
+    localStorage.setItem("saldo-usuario", nuevoSaldo);
+    localStorage.setItem("movimientos", JSON.stringify(listaMovimientos));
+}
+
+function cargarDatos(){
+    const saldoGuardado = localStorage.getItem("saldo-usuario");
+    const movimientosGuardados = localStorage.getItem("movimientos");
+
+    if (saldoGuardado) {
+        saldo = parseFloat(saldoGuardado);
+        document.getElementById("saldo-usuario").textContent = formatCurrency(saldo);
+    }
+
+    if (movimientosGuardados) {
+        const movimientos = JSON.parse(movimientosGuardados);
+        movimientos.forEach(movimiento => {
+            listaMovimientos.push(new Movimiento(movimiento.valor, movimiento.tipo, movimiento.hora, movimiento.fecha));
+        });
+    }
 }
