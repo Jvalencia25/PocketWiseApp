@@ -59,7 +59,8 @@
 	<!-- Resumen -->
 	<section id="resumen" class="ocultar">
 		<a href="javascript:void(0);" class="boton volver">&lt;</a>
-		<h1>Resumen</h1>
+		<h1>Resumen de movimientos</h1>
+		<div id="movimientos-container"></div>
 	</section>
 
 	<!-- Ganancia -->
@@ -79,8 +80,17 @@
 
 	<!-- Gasto -->
 	<section id="gasto" class="ocultar">
-		<a href="javascript:void(0);" class="boton volver">&lt;</a>
-		<h1>Gasto</h1>
+		<div class="header-gasto">
+			<img src="https://i.imgur.com/fyIY2T9.png" alt="icono redireccion" class="icono-redireccion">
+			<a href="javascript:void(0);" class="boton volver">&lt;</a>
+		
+		</div>
+		<br><br>
+		<h1 class="titulo-gasto">Gasto</h1>
+		<img src="https://i.imgur.com/bDCIvcz.png" alt="Imagen de Gasto" class="imagen-gasto">
+		<p class="texto-cantidad">¿Cuánto gasté?</p>
+		<input type="text" id="input-gasto" placeholder="Ingresa aquí cuánto gastaste" class="input-gasto">
+		<button id="btn_aceptar_gasto" class="boton-aceptar">Aceptar</button>
 	</section>
 
 	<!-- Encuesta -->

@@ -26,26 +26,57 @@ function init(){
         cargarSeccion("home");
     }, 3000);
 
-    document.getElementById("btn_aceptar_ganancia").addEventListener("click", function() {
-        const inputGanancia = document.getElementById("input-ganancia").value;
-        const cantidad = parseFloat(inputGanancia.replace(/[^0-9.]/g, ''));
-        if (!isNaN(cantidad) && cantidad>0) {
-            const saldoElement = document.getElementById("saldo-usuario");
-            const saldoActual = parseFloat(saldoElement.textContent.replace(/[^0-9.]/g, '')) || 0;
-            const nuevoSaldo = saldoActual + cantidad;
+    document.getElementById("btn_aceptar_ganancia").addEventListener("click", sumarSaldo);
+    document.getElementById("btn_aceptar_gasto").addEventListener("click", restarSaldo);
+    document.getElementById("btn_resumen").addEventListener("click", () => renderizarMovimientos(listaMovimientos));
+}
+
+function sumarSaldo(){
+    const inputGanancia = document.getElementById("input-ganancia").value;
+    const cantidad = parseFloat(inputGanancia.replace(/[^0-9.]/g, ''));
+    if (!isNaN(cantidad) && cantidad>0) {
+        const saldoElement = document.getElementById("saldo-usuario");
+        const saldoActual = parseFloat(saldoElement.textContent.replace(/[^0-9.]/g, '')) || 0;
+        const nuevoSaldo = saldoActual + cantidad;
+        saldoElement.textContent = formatCurrency(nuevoSaldo);
+        // Obtener fecha y hora actuales
+        const { fecha, hora } = getCurrentDateTime();
+            
+        // Crear una instancia de Movimiento
+        const movimiento = new Movimiento(cantidad, 'ganancia', hora, fecha);
+            
+        listaMovimientos.push(movimiento);
+        document.getElementById("input-ganancia").value = "";
+    }
+    else window.alert("Debes ingresar un número que sea más grande que 0!");
+    cargarSeccion("home");
+}
+
+function restarSaldo(){
+    const inputGasto = document.getElementById("input-gasto").value;
+    const cantidad = parseFloat(inputGasto.replace(/[^0-9.]/g, ''));
+    if (!isNaN(cantidad) && cantidad>0) {
+        const saldoElement = document.getElementById("saldo-usuario");
+        const saldoActual = parseFloat(saldoElement.textContent.replace(/[^0-9.]/g, '')) || 0;
+
+        if (saldoActual >= cantidad){
+            const nuevoSaldo = saldoActual - cantidad;
             saldoElement.textContent = formatCurrency(nuevoSaldo);
             // Obtener fecha y hora actuales
             const { fecha, hora } = getCurrentDateTime();
             
             // Crear una instancia de Movimiento
-            const movimiento = new Movimiento(cantidad, 'ganancia', hora, fecha);
+            const movimiento = new Movimiento(cantidad, 'gasto', hora, fecha);
             
             listaMovimientos.push(movimiento);
-            document.getElementById("input-ganancia").value = "";
+            document.getElementById("input-gasto").value = "";
         }
-        cargarSeccion("home");
-    });
+        else window.alert("No puedes hacer ese gasto! No tienes saldo");
+    }
+    else window.alert("Debes ingresar un número que sea más grande que 0!");
+    cargarSeccion("home");
 }
+
 class Movimiento {
     constructor(valor, tipo, hora, fecha) {
         this.valor = valor;
@@ -67,6 +98,67 @@ function getCurrentDateTime() {
 
 function formatCurrency(amount) {
     return amount.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 });
+}
+
+function agruparPorFecha(movimientos){
+    return movimientos.reduce((grupos, movimiento) => {
+        const fecha = movimiento.fecha;
+        if (!grupos[fecha]){
+            grupos[fecha] = [];
+        }
+        grupos[fecha].push(movimiento)
+        return grupos;
+    }, {});
+}
+
+function renderizarMovimientos(movimientos){
+    const container = document.getElementById('movimientos-container');
+    container.innerHTML = '';
+
+    const gruposPorFecha = agruparPorFecha(movimientos);
+    
+    for (const fecha in gruposPorFecha){
+        const grupo = gruposPorFecha[fecha];
+
+        const grupoDiv = document.createElement('div');
+        grupoDiv.classList.add('movimiento-grupo');
+
+        const fechaTitulo = document.createElement('div');
+        fechaTitulo.classList.add('fecha-titulo');
+        fechaTitulo.textContent = `Fecha: ${fecha}`;
+        grupoDiv.appendChild(fechaTitulo);
+
+        grupo.forEach(movimiento =>{
+            const movimientoDiv = document.createElement('div');
+            movimientoDiv.classList.add('movimiento', `tipo-${movimiento.tipo}`);
+
+            const tipoDiv = document.createElement('div');
+            tipoDiv.classList.add('tipo');
+            tipoDiv.textContent = movimiento.tipo.charAt(0).toUpperCase() + movimiento.tipo.slice(1);
+
+            const detallesDiv = document.createElement('div');
+            detallesDiv.classList.add('detalles');
+
+            const valorDiv = document.createElement('div');
+            valorDiv.classList.add('valor');
+
+            if (movimiento.tipo=='ganancia') valorDiv.textContent = '+'+formatCurrency(movimiento.valor);
+            else valorDiv.textContent = '-'+formatCurrency(movimiento.valor);
+
+            const horaDiv = document.createElement('div');
+            horaDiv.classList.add('hora');
+            horaDiv.textContent = movimiento.hora;
+
+            detallesDiv.appendChild(valorDiv);
+            detallesDiv.appendChild(horaDiv);
+
+            movimientoDiv.appendChild(tipoDiv);
+            movimientoDiv.appendChild(detallesDiv);
+            grupoDiv.appendChild(movimientoDiv);
+        });
+
+        container.appendChild(grupoDiv);
+    }
 }
 
 function asignarVolver(){
