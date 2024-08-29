@@ -435,7 +435,7 @@ function resetSurvey() {
     document.querySelector('.mm-prev-btn').style.display = 'none';
     document.querySelector('.mm-next-btn').style.display = 'block';
     document.querySelector('.mm-next-btn button').disabled = true;
-    document.querySelector('.mm-finish-btn').style.display = 'none'; // Hide finish button on reset
+    document.querySelector('.mm-finish-btn').style.display = 'none'; // Asegura que el botón de finalizar esté oculto al reiniciar
 
     // Limpiar los resultados
     document.querySelector('.mm-survey-results-score').innerText = '';
@@ -456,7 +456,7 @@ function resetSurvey() {
 
 function collectData() {
     var map = {};
-    var ax = ['Si', 'Si', 'No', 'Tengo un lugar en mente', 'No', 'No', 'calmado y neutral'];
+    var ax = ['Red', 'Mercedes', '3.14', '3']; // Actualiza las respuestas correctas según tus preguntas
     var ttl = 0;
 
     document.querySelectorAll('.mm-survey-item input:checked').forEach(function(item) {
