@@ -66,10 +66,10 @@ function restarSaldo(){
             const { fecha, hora } = getCurrentDateTime();
             
             // Crear una instancia de Movimiento
-            const movimiento = new Movimiento(cantidad, 'ganancia', hora, fecha);
+            const movimiento = new Movimiento(cantidad, 'gasto', hora, fecha);
             
             listaMovimientos.push(movimiento);
-            document.getElementById("input-ganancia").value = "";
+            document.getElementById("input-gasto").value = "";
         }
         else window.alert("No puedes hacer ese gasto! No tienes saldo");
     }
@@ -125,15 +125,35 @@ function renderizarMovimientos(movimientos){
 
         const fechaTitulo = document.createElement('div');
         fechaTitulo.classList.add('fecha-titulo');
-        fechaTitulo.textContent = 'Fecha: ${fecha}';
+        fechaTitulo.textContent = `Fecha: ${fecha}`;
         grupoDiv.appendChild(fechaTitulo);
 
         grupo.forEach(movimiento =>{
             const movimientoDiv = document.createElement('div');
-            movimientoDiv.classList.add('movimiento');
-            movimientoDiv.textContent = `Valor: ${movimiento.valor}, 
-                                        Tipo: ${movimiento.tipo}, 
-                                        Hora: ${movimiento.hora}`;
+            movimientoDiv.classList.add('movimiento', `tipo-${movimiento.tipo}`);
+
+            const tipoDiv = document.createElement('div');
+            tipoDiv.classList.add('tipo');
+            tipoDiv.textContent = movimiento.tipo.charAt(0).toUpperCase() + movimiento.tipo.slice(1);
+
+            const detallesDiv = document.createElement('div');
+            detallesDiv.classList.add('detalles');
+
+            const valorDiv = document.createElement('div');
+            valorDiv.classList.add('valor');
+
+            if (movimiento.tipo=='ganancia') valorDiv.textContent = '+'+formatCurrency(movimiento.valor);
+            else valorDiv.textContent = '-'+formatCurrency(movimiento.valor);
+
+            const horaDiv = document.createElement('div');
+            horaDiv.classList.add('hora');
+            horaDiv.textContent = movimiento.hora;
+
+            detallesDiv.appendChild(valorDiv);
+            detallesDiv.appendChild(horaDiv);
+
+            movimientoDiv.appendChild(tipoDiv);
+            movimientoDiv.appendChild(detallesDiv);
             grupoDiv.appendChild(movimientoDiv);
         });
 
