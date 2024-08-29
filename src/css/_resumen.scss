@@ -2,3 +2,36 @@
     background: $fondo_sobre;
     position: absolute;
 }
+
+.movimientos-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.movimiento-grupo {
+    border: 2px solid #007BFF; /* Borde del recuadro */
+    border-radius: 8px; /* Esquinas redondeadas */
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9; /* Fondo claro para el recuadro */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+.fecha-titulo {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.movimiento {
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.movimiento:last-child {
+    margin-bottom: 0;
+}

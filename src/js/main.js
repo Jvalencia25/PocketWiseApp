@@ -28,6 +28,7 @@ function init(){
 
     document.getElementById("btn_aceptar_ganancia").addEventListener("click", sumarSaldo);
     document.getElementById("btn_aceptar_gasto").addEventListener("click", restarSaldo);
+    document.getElementById("btn_resumen").addEventListener("click", () => renderizarMovimientos(listaMovimientos));
 }
 
 function sumarSaldo(){
@@ -97,6 +98,47 @@ function getCurrentDateTime() {
 
 function formatCurrency(amount) {
     return amount.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 });
+}
+
+function agruparPorFecha(movimientos){
+    return movimientos.reduce((grupos, movimiento) => {
+        const fecha = movimiento.fecha;
+        if (!grupos[fecha]){
+            grupos[fecha] = [];
+        }
+        grupos[fecha].push(movimiento)
+        return grupos;
+    }, {});
+}
+
+function renderizarMovimientos(movimientos){
+    const container = document.getElementById('movimientos-container');
+    container.innerHTML = '';
+
+    const gruposPorFecha = agruparPorFecha(movimientos);
+    
+    for (const fecha in gruposPorFecha){
+        const grupo = gruposPorFecha[fecha];
+
+        const grupoDiv = document.createElement('div');
+        grupoDiv.classList.add('movimiento-grupo');
+
+        const fechaTitulo = document.createElement('div');
+        fechaTitulo.classList.add('fecha-titulo');
+        fechaTitulo.textContent = 'Fecha: ${fecha}';
+        grupoDiv.appendChild(fechaTitulo);
+
+        grupo.forEach(movimiento =>{
+            const movimientoDiv = document.createElement('div');
+            movimientoDiv.classList.add('movimiento');
+            movimientoDiv.textContent = `Valor: ${movimiento.valor}, 
+                                        Tipo: ${movimiento.tipo}, 
+                                        Hora: ${movimiento.hora}`;
+            grupoDiv.appendChild(movimientoDiv);
+        });
+
+        container.appendChild(grupoDiv);
+    }
 }
 
 function asignarVolver(){
