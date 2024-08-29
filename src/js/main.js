@@ -1,5 +1,10 @@
 let refs = [];
 let btns = [];
+let x;
+let count;
+let current;
+let percent;
+let z = [];
 
 window.onload = init;
 
@@ -11,7 +16,6 @@ function init(){
     refs["gasto"] = document.getElementById("gasto");
     refs["sobre"] = document.getElementById("sobre");
     refs["encuesta"] = document.getElementById("encuesta");
- 
 
     btns["btn_resumen"] = document.getElementById("btn_resumen");
     btns["btn_ganancia"] = document.getElementById("btn_ganancia");
@@ -32,6 +36,24 @@ function init(){
     document.getElementById("btn_aceptar_ganancia").addEventListener("click", sumarSaldo);
     document.getElementById("btn_aceptar_gasto").addEventListener("click", restarSaldo);
     document.getElementById("btn_resumen").addEventListener("click", () => renderizarMovimientos(listaMovimientos));
+
+    document.querySelectorAll('.mm-prev-btn').forEach(function(btn) {
+        btn.style.display = 'none';
+    });
+
+    getCurrentSlide();
+    goToNext();
+    goToPrev();
+    getCount();
+    buildStatus();
+    deliverStatus();
+    submitData();
+    goBack();
+
+    document.querySelectorAll('.mm-survey-container .mm-survey-page').forEach(function(item) {
+        var page = item.getAttribute('data-page');
+        item.classList.add('mm-page-' + page);
+    });
 }
 
 function sumarSaldo(){
@@ -89,7 +111,7 @@ class Movimiento {
     }
 }
 
-let saldo=0;
+let saldo = 0;
 const listaMovimientos = [];
 
 function getCurrentDateTime() {
@@ -98,7 +120,6 @@ function getCurrentDateTime() {
     const hora = now.toTimeString().split(' ')[0]; // HH:MM:SS
     return { fecha, hora };
 }
-
 
 function formatCurrency(amount) {
     return amount.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 });
@@ -156,7 +177,7 @@ function renderizarMovimientos(movimientos){
                 const valorDiv = document.createElement('div');
                 valorDiv.classList.add('valor');
 
-                if (movimiento.tipo=='ganancia') valorDiv.textContent = '+'+formatCurrency(movimiento.valor);
+                if (movimiento.tipo == 'ganancia') valorDiv.textContent = '+'+formatCurrency(movimiento.valor);
                 else valorDiv.textContent = '-'+formatCurrency(movimiento.valor);
 
                 const horaDiv = document.createElement('div');
@@ -173,9 +194,7 @@ function renderizarMovimientos(movimientos){
 
             container.appendChild(grupoDiv);
         }
-    }
-    else{
-
+    } else {
         const img = document.createElement('img');
         img.src = '../img/placeholder_empty.jpg';
         img.classList.add("imagen");
@@ -197,20 +216,21 @@ function asignarVolver(){
         });
     }
 }
-function asignarEventosMenu()
-{
+
+function asignarEventosMenu(){
     btns["btn_resumen"].addEventListener("click", cambiarSeccion);
     btns["btn_ganancia"].addEventListener("click", cambiarSeccion);
     btns["btn_gasto"].addEventListener("click", cambiarSeccion);
     btns["btn_sobre"].addEventListener("click", cambiarSeccion);
     btns["btn_encuesta"].addEventListener("click", cambiarSeccion);
 }
-function ocultar()
-{
+
+function ocultar(){
     for (let key in refs) {
         refs[key].classList.add("ocultar");
     }
 }
+
 function cambiarSeccion(e){ 
     let targetId = e.currentTarget.id;  
     let seccion = targetId.split("_")[1]; 
@@ -238,9 +258,188 @@ function cargarDatos(){
     }
 
     if (movimientosGuardados) {
-        const movimientos = JSON.parse(movimientosGuardados);
-        movimientos.forEach(movimiento => {
-            listaMovimientos.push(new Movimiento(movimiento.valor, movimiento.tipo, movimiento.hora, movimiento.fecha));
+        listaMovimientos.push(...JSON.parse(movimientosGuardados));
+    }
+}
+
+// Encuesta JS
+
+function getCount() {
+    count = document.querySelectorAll('.mm-survey-page').length;
+    return count;
+}
+
+function goToNext() {
+    document.querySelectorAll('.mm-next-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            goToSlide(x);
+            getCount();
+            current = x + 1;
+            var g = current / count;
+            buildProgress(g);
+            var y = count + 1;
+            getButtons();
+            document.querySelectorAll('.mm-survey-page').forEach(function(page) {
+                page.classList.remove('active');
+            });
+            document.querySelector('.mm-page-' + current).classList.add('active');
+            getCurrentSlide();
+            checkStatus();
+            if (document.querySelector('.mm-page-' + count).classList.contains('active')) {
+                if (document.querySelector('.mm-page-' + count).classList.contains('pass')) {
+                    document.querySelector('.mm-finish-btn').classList.add('active');
+                } else {
+                    document.querySelectorAll('.mm-page-' + count + ' .mm-survery-content .mm-survey-item').forEach(function(item) {
+                        item.addEventListener('click', function() {
+                            document.querySelector('.mm-finish-btn').classList.add('active');
+                        });
+                    });
+                }
+            }
         });
+    });
+}
+
+function getCurrentSlide() {
+    document.querySelectorAll('.mm-survey-page').forEach(function(item) {
+        if (item.classList.contains('active')) {
+            x = parseInt(item.getAttribute('data-page'));
+        }
+    });
+    return x;
+}
+
+function goToSlide(x) {
+    x = x + 1;
+    return x;
+}
+
+function goToPrev() {
+    document.querySelectorAll('.mm-prev-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            goBackSlide(x);
+            getCount();
+            current = x - 1;
+            var g = current / count;
+            buildProgress(g);
+            var y = count + 1;
+            getButtons();
+            document.querySelectorAll('.mm-survey-page').forEach(function(page) {
+                page.classList.remove('active');
+            });
+            document.querySelector('.mm-page-' + current).classList.add('active');
+            getCurrentSlide();
+            checkStatus();
+        });
+    });
+}
+
+function goBackSlide(x) {
+    x = x - 1;
+    return x;
+}
+
+function getButtons() {
+    var h = count + 1;
+    if (x === 1) {
+        document.querySelectorAll('.mm-prev-btn').forEach(function(btn) {
+            btn.style.display = 'none';
+        });
+    } else {
+        document.querySelectorAll('.mm-prev-btn').forEach(function(btn) {
+            btn.style.display = 'block';
+        });
+    }
+    if (x === count) {
+        document.querySelector('.mm-next-btn').style.display = 'none';
+    } else {
+        document.querySelector('.mm-next-btn').style.display = 'block';
+    }
+}
+
+function buildProgress(g) {
+    percent = g * 100;
+    deliverProgress(percent);
+}
+
+function deliverProgress(percent) {
+    document.querySelector('.mm-progress').style.width = percent + '%';
+}
+
+function checkStatus() {
+    document.querySelector('.mm-next-btn button').disabled = true;
+    document.querySelectorAll('.mm-survey-page.active .mm-survey-item input').forEach(function(input) {
+        input.addEventListener('change', function() {
+            if (document.querySelector('.mm-survey-page.active input[type="radio"]:checked')) {
+                document.querySelector('.mm-next-btn button').disabled = false;
+            }
+        });
+    });
+}
+
+function buildStatus() {
+    document.querySelectorAll('.mm-survey-item input').forEach(function(item) {
+        item.addEventListener('click', function() {
+            var data = item.getAttribute('data-item');
+            var value = item.value;
+            z.push(data);
+            if (z.length > 0) {
+                document.querySelector('.mm-next-btn button').disabled = false;
+            }
+        });
+    });
+}
+
+function deliverStatus() {
+    var m = z.length;
+}
+
+function submitData() {
+    document.querySelector('.mm-finish-btn button').addEventListener('click', function() {
+        collectData();
+        document.querySelector('.mm-survey-bottom').style.display = 'none';
+        document.querySelector('.mm-survey-progress').style.display = 'none';
+        document.querySelector('.mm-survey-results').style.display = 'block';
+    });
+}
+
+function goBack() {
+    document.querySelectorAll('.mm-back-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            document.querySelector('.mm-survey-bottom').style.display = 'block';
+            document.querySelector('.mm-survey-results').style.display = 'none';
+        });
+    });
+}
+
+function collectData() {
+    var map = {};
+    var ax = ['Si', 'Si', 'No', 'Tengo un lugar en mente', 'No', 'No', 'calmado y neutral'];
+    var total = 0;
+    var ttl = 0;
+
+    document.querySelectorAll('.mm-survey-item input:checked').forEach(function(item) {
+        var data = item.value;
+        var name = item.getAttribute('data-item');
+        var n = parseInt(data);
+        map[name] = data;
+    });
+
+    for (var i = 1; i <= count; i++) {
+        if (map[i] === ax[i - 1]) {
+            ttl++;
+        }
+    }
+
+    var results = ((ttl / count) * 100).toFixed(0);
+
+    if (results > 50) {
+        document.querySelector('.mm-survey-results-score').innerText = '¡Puedes comprarlo!';
+        document.querySelector('.mm-survey-results .mm-result-title').innerText = '¡Felicidades!';
+        document.querySelector('.mm-survey-results .mm-results-icon').innerHTML = '<i class="fa fa-check-circle"></i>';
+    } else {
+        document.querySelector('.mm-survey-results-score').innerText = 'Mejor espera un poco más.';
+        document.querySelector('.mm-survey-results .mm-result-title').innerText = '¡Ups!';
+        document.querySelector('.mm-survey-results .mm-results-icon').innerHTML = '<i class="fa fa-times-circle"></i>';
     }
 }
