@@ -20,12 +20,14 @@
         refs["gasto"] = document.getElementById("gasto");
         refs["sobre"] = document.getElementById("sobre");
         refs["encuesta"] = document.getElementById("encuesta");
+        refs["navbar"] = document.getElementById("navbar");
 
         btns["btn_resumen"] = document.getElementById("btn_resumen");
         btns["btn_ganancia"] = document.getElementById("btn_ganancia");
         btns["btn_gasto"] = document.getElementById("btn_gasto");
         btns["btn_sobre"] = document.getElementById("btn_sobre");
         btns["btn_encuesta"] = document.getElementById("btn_encuesta");
+        btns["btn_navbar"] = document.getElementById("btn_navbar");
 
         asignarEventosMenu();
         asignarVolver();
