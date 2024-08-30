@@ -59,7 +59,7 @@
 	background: #fff;
     border: none;
     padding: 8px 18px;
-    font-weight: 300;
+    font-weight: 1000;
 }
 
 .mm-survey-results-controller button {
@@ -82,7 +82,7 @@
 .mm-survey-progress-bar {
 	height: 30px;
     width: 0%;
-    background: linear-gradient(to left, #F4CB94, #f5d0a0);
+    background: linear-gradient(to left, #F3C1CA, #F3C1CA);
 }
 
 .mm-survey-q {
@@ -118,7 +118,7 @@
 
 .mm-survey-question p {
 	font-size: 22px;
-    font-weight: 200;
+    font-weight: 1000;
     margin-bottom: 20px;
     line-height: 40px;
 }
@@ -157,8 +157,8 @@ input[type="radio"] + label span {
 }
 
 input[type="radio"]:checked + label span {
-	border: 2px solid #F4CB94;
-	background: #F4CB94;
+	border: 2px solid #C9E2FD;
+	background: #C9E2FD;
 }
 
 input[type="radio"] + label span,
@@ -203,27 +203,6 @@ input[type="radio"]:checked + label span {
     font-size: 80px;
     font-weight: 1000;
     letter-spacing: -6px;
-}
-
-.mm-survey-results-list {
-	list-style-type: none;
-	padding: 0px 15px;
-    margin: 0px;
-}
-
-.mm-survey-results-item {
-	color: #fff;
-    margin-top: 10px;
-    padding: 15px 15px 15px 0px;
-    font-weight: 300;
-}
-
-.mm-survey-results-item.correct {
-	background: linear-gradient(to left, #4CB8C4, #3CD3AD);
-}
-
-.mm-survey-results-item.incorrect {
-	background: linear-gradient(to left, #d33c62, #dc1144);
 }
 
 .mm-item-number {
