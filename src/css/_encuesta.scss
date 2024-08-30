@@ -2,146 +2,138 @@
     background: $fondo_sobre;
     position: absolute;
 }
+
 .mm-survey {
-	margin-top: 75px;
-	margin-bottom: 50px;
+    margin-top: 75px;
+    margin-bottom: 50px;
 }
 
 .mm-survey-container {
-	width: 100%;
-	min-height: 600px;
-	background: #fafafa;
+    width: 100%;
+    min-height: 600px;
+    background: $fondo_sobre;
 }
 
 .mm-survey-results-container {
-	width: 100%;
-	min-height: 600px;
-	background: #fafafa;
+    width: 100%;
+    min-height: 600px;
+    background: $fondo_sobre;
 }
 
 .mm-survey-page {
-	display: none;
-	font-family: 'Raleway';
-	font-weight: 100;
-	padding: 40px;
+    display: none;
+    font-weight: 1000;
+    padding: 40px;
 }
 
 .mm-survey-page.active {
-	display: block;
-}
-
-.mm-survey-controller {
-	position: relative;
-    height: 60px;
-    background: #333;
-    padding: 12px 14px;
-}
-
-.mm-survey-results-controller {
-	position: relative;
-    height: 60px;
-    background: #333;
-    padding: 12px 14px;
+    display: block;
 }
 
 .mm-back-btn {
-	display: inline-block;
+    display: inline-block;
     position: relative;
 }
 
-.mm-prev-btn {
-	display: inline-block;
+.mm-next-btn,
+.mm-finish-btn {
+    display: inline-block;
     position: relative;
 }
 
-.mm-next-btn {
-	display: inline-block;
-	opacity: 0.25;
-    position: relative;
+.mm-survey-controller button,
+.mm-finish-btn button {
+    background: #fff;
+    border: none;
+	margin-bottom: 200px;
+    padding: 8px 18px;
+    font-weight: 1000;
+    cursor: pointer;
 }
 
 .mm-finish-btn {
-	display: none;
-    position: relative;
-    float: right;
+    display: inline-block; /* Muestra siempre el botón "Finalizar" */
+    margin-left: auto; /* Empuja el botón "Finalizar" hacia la derecha */
 }
 
 .mm-finish-btn button {
-	background: #3DD2AF !important;
+    background: #3DD2AF !important;
     color: #fff;
 }
 
-.mm-survey-controller button {
-	background: #fff;
-    border: none;
-    padding: 8px 18px;
-    font-family: 'Raleway';
-    font-weight: 300;
+.mm-survey-results {
+    display: none;
 }
 
-.mm-survey-results-controller button {
-	background: #fff;
-	border: none;
-	padding: 8px 18px;
+.mm-survey-results-score {
+	color: #B59795;
+    margin: 0px;
+    padding: 0px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    text-align: center;
+    font-size: 80px;
+    font-weight: 1000;
+    letter-spacing: -6px;
 }
 
 .mm-survey-progress {
-	width: 100%;
-	height: 30px;
-	background: #f5f5f5;
-	overflow: hidden;
+    width: 100%;
+    height: 30px;
+    background: #FDF5E2;
+    overflow: hidden;
 }
 
 .mm-progress {
-	transition: width 0.5s ease-in-out;
+    transition: width 0.5s ease-in-out;
 }
 
 .mm-survey-progress-bar {
-	height: 30px;
+    height: 30px;
     width: 0%;
-    background: linear-gradient(to left, #4CB8C4, #3CD3AD);
+    background: linear-gradient(to left, #F3C1CA, #F3C1CA);
 }
 
 .mm-survey-q {
-	list-style-type: none;
-	padding: 0px;
+    list-style-type: none;
+    padding: 0px;
 }
 
 .mm-survey-q li {
-	display: block;
-	/*padding: 20px 0px;*/
-	margin-bottom: 10px;
-	width: 100%;
-	background: #fff;
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    background: #B59795;
 }
 
 .mm-survey-q li input {
-	width: 100%;
+    width: 100%;
 }
 
 .mm-survery-content label {
-	width: 100%;
-	padding: 10px 10px;
-	margin: 0px !important;
+    width: 100%;
+    padding: 10px 10px;
+    margin: 0px !important;
 }
 
 .mm-survery-content label:hover {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .mm-survey-question {
-	min-height: 100px;
+    min-height: 100px;
 }
 
 .mm-survey-question p {
-	font-size: 22px;
-    font-weight: 200;
+	color: #B59795;
+    font-size: 22px;
+    font-weight: 1000;
     margin-bottom: 20px;
     line-height: 40px;
 }
 
 .mm-survery-content label p {
-	display: inline-block;
+    display: inline-block;
     position: relative;
     top: 2px;
     left: 5px;
@@ -149,111 +141,56 @@
 }
 
 input[type="radio"] {
-	display: none;
+    display: none;
 }
 
 input[type="radio"] + label {
-	color: #292321;
-    font-family: 'Raleway';
-    font-weight: 300;
+    color: #B59795;
+    font-weight: 1000;
     font-size: 16px;
 }
 
 input[type="radio"] + label span {
-	display: inline-block;
-	width: 30px;
-	height: 30px;
-	margin: 2px 4px 0 0;
-	vertical-align: middle;
-	cursor: pointer;
-	-moz-border-radius: 50%;
-	border-radius: 50%;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin: 2px 4px 0 0;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 50%;
 }
 
 input[type="radio"] + label span {
- 	background-color: #333;
+    background-color: #B59795;
 }
 
 input[type="radio"]:checked + label span {
-	border: 2px solid #3DD2AF;
-	background: transparent;
+    border: 2px solid #C9E2FD;
+    background: #C9E2FD;
 }
 
 input[type="radio"] + label span,
 input[type="radio"]:checked + label span {
-	-webkit-transition: background-color 0.20s ease-in-out;
-	-o-transition: background-color 0.20s ease-in-out;
-	-moz-transition: background-color 0.20s ease-in-out;
-	transition: background-color 0.20s ease-in-out;
+    transition: background-color 0.20s ease-in-out;
 }
 
 .mm-survey-item {
-	background: #fff;
-	margin-bottom: 15px;
-	border-bottom: 1px solid rgba(33,33,33,0.15);
+    background: #fff;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #B59795;
     border-radius: 0px 0px 4px 4px;
 }
 
-.mm-prev-btn button:focus, .mm-next-btn button:focus, .mm-finish-btn button:focus {
-	outline: none;
-	border: none;
-}
 
-.mm-survey.okay .mm-next-btn {
-	display: inline-block;
-	opacity: 1;
-}
-
-.mm-finish-btn.active {
-	display: inline-block;
-}
-
-.mm-survey-results {
-	display: none;
-}
-
-.mm-survey-results-score {
-	margin: 0px;
-    padding: 0px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    text-align: center;
-    font-size: 80px;
-    font-family: 'Raleway';
-    font-weight: 600;
-    letter-spacing: -6px;
-}
-
-.mm-survey-results-list {
-	list-style-type: none;
-	padding: 0px 15px;
-    margin: 0px;
-}
-
-.mm-survey-results-item {
-	color: #fff;
-    margin-top: 10px;
-    padding: 15px 15px 15px 0px;
-    font-family: 'Raleway';
-    font-weight: 300;
-}
-
-.mm-survey-results-item.correct {
-	background: linear-gradient(to left, #4CB8C4, #3CD3AD);
-}
-
-.mm-survey-results-item.incorrect {
-	background: linear-gradient(to left, #d33c62, #dc1144);
-}
 
 .mm-item-number {
-	height: 40px;
-	position: relative;
-	padding: 17px;
-	background: #333;
-	color: #fff;
+    height: 40px;
+    position: relative;
+    padding: 17px;
+    background: #B59795;
+    color: #fff;
 }
 
 .mm-item-info {
-	float: right;
+    float: right;
 }
