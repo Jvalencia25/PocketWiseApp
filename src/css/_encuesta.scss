@@ -38,7 +38,8 @@
 .mm-next-btn,
 .mm-finish-btn {
     display: inline-block;
-    position: relative;
+    position: absolute;
+top: 500px; left: 150px;
 }
 
 .mm-survey-controller button,

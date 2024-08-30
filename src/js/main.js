@@ -20,12 +20,23 @@
         refs["gasto"] = document.getElementById("gasto");
         refs["sobre"] = document.getElementById("sobre");
         refs["encuesta"] = document.getElementById("encuesta");
+        refs["navbar"] = document.getElementById("navbar");
 
         btns["btn_resumen"] = document.getElementById("btn_resumen");
         btns["btn_ganancia"] = document.getElementById("btn_ganancia");
         btns["btn_gasto"] = document.getElementById("btn_gasto");
         btns["btn_sobre"] = document.getElementById("btn_sobre");
         btns["btn_encuesta"] = document.getElementById("btn_encuesta");
+        btns["btn_navbar"] = document.getElementById("btn_navbar");
+
+        
+        btns["btn_home"] = document.getElementById("btn_home");
+        btns["btn2_resumen"] = document.getElementById("btn2_resumen");
+        btns["btn2_ganancia"] = document.getElementById("btn2_ganancia");
+        btns["btn2_gasto"] = document.getElementById("btn2_gasto");
+        btns["btn2_sobre"] = document.getElementById("btn2_sobre");
+        btns["btn2_encuesta"] = document.getElementById("btn2_encuesta");
+        
 
         asignarEventosMenu();
         asignarVolver();
@@ -221,11 +232,19 @@
     }
 
     function asignarEventosMenu() {
+        
+        btns["btn_home"].addEventListener("click", cambiarSeccion);
         btns["btn_resumen"].addEventListener("click", cambiarSeccion);
         btns["btn_ganancia"].addEventListener("click", cambiarSeccion);
         btns["btn_gasto"].addEventListener("click", cambiarSeccion);
         btns["btn_sobre"].addEventListener("click", cambiarSeccion);
         btns["btn_encuesta"].addEventListener("click", cambiarSeccion);
+        btns["btn_navbar"].addEventListener("click", cambiarSeccion);
+        btns["btn2_resumen"].addEventListener("click", cambiarSeccion);
+        btns["btn2_ganancia"].addEventListener("click", cambiarSeccion);
+        btns["btn2_gasto"].addEventListener("click", cambiarSeccion);
+        btns["btn2_sobre"].addEventListener("click", cambiarSeccion);
+        btns["btn2_encuesta"].addEventListener("click", cambiarSeccion);
     }
 
     function ocultar() {
@@ -272,8 +291,12 @@
     function goToNext() {
         document.querySelectorAll('.mm-next-btn').forEach(function(btn) {
             btn.addEventListener('click', function() {
-                x = goToSlide(x);
-                updateSurvey();
+                if (x < count) {
+                    x = goToSlide(x);
+                    updateSurvey();
+                } else {
+                    showResults();
+                }
             });
         });
     }
@@ -292,7 +315,6 @@
             page.classList.remove('active');
         });
         document.querySelector('.mm-page-' + x).classList.add('active');
-        getCurrentSlide();
         checkStatus();
         getButtons();
         buildProgress(x / count);
@@ -308,24 +330,27 @@
 
     function getButtons() {
         const prevBtn = document.querySelector('.mm-prev-btn');
-        const nextBtn = document.querySelector('.mm-next-btn');
-        const finishBtn = document.querySelector('.mm-finish-btn');
-
+        const nextBtn = document.querySelector('.mm-next-btn button');
+    
         if (x === 1) {
             prevBtn.style.display = 'none';
         } else {
             prevBtn.style.display = 'block';
         }
-
+    
         if (x === count) {
-            nextBtn.style.display = 'none';
-            finishBtn.style.display = 'block';
+            nextBtn.innerText = 'Ver Resultados';
         } else {
-            nextBtn.style.display = 'block';
-            finishBtn.style.display = 'none';
+            nextBtn.innerText = 'Siguiente';
         }
     }
-
+    function showResults() {
+        collectData();
+        document.querySelector('.mm-survey-bottom').style.display = 'none';
+        document.querySelector('.mm-survey-progress').style.display = 'none';
+        document.querySelector('.mm-survey-results').style.display = 'block';
+    }
+    
 
     function buildProgress(progress) {
         percent = progress * 100;
@@ -365,8 +390,9 @@
     }
 
     function goBack() {
-        document.querySelectorAll('.mm-back-btn').forEach(function(btn) {
-            btn.addEventListener('click', function() {
+        document.addEventListener('DOMContentLoaded', function() {
+
+        document.querySelector('.mm-back-btn button').addEventListener('click', function() {
                 document.querySelector('.mm-survey-bottom').style.display = 'block';
                 document.querySelector('.mm-survey-results').style.display = 'none';
                 cargarSeccion("home");
@@ -374,6 +400,7 @@
             });
         });
     }
+    
 
     function resetSurvey() {
         deliverProgress(0);
@@ -394,7 +421,7 @@
 
     function collectData() {
         const map = {};
-        const correctAnswers = ['Si', 'Si', 'No', 'Tengo un lugar en mente', 'No', 'No', 'calmado y neutral'];
+        const correctAnswers = ['Si', 'Si', 'No', 'Tengo un lugar en mente', 'No', 'No', 'Calmado y neutral'];
         let totalCorrect = 0;
 
         document.querySelectorAll('.mm-survey-item input:checked').forEach(function(item) {
