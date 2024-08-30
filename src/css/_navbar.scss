@@ -1,16 +1,8 @@
-$fondo-navbar: #F8D7DE;
-$btn-volver-color: #E58899;
-$txt-title-color: #B59795;
-
 #navbar {
   background-color: $fondo-navbar;
-  display: flex;
-  flex-direction: column;
+  position: absolute;
   align-items: center;
   justify-content: space-between;
-  height: 100vh;
-  padding: 20px;
-
   .navbar-header {
     margin-top: 20px;
 

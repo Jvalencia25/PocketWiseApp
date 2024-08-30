@@ -228,6 +228,7 @@
         btns["btn_gasto"].addEventListener("click", cambiarSeccion);
         btns["btn_sobre"].addEventListener("click", cambiarSeccion);
         btns["btn_encuesta"].addEventListener("click", cambiarSeccion);
+        btns["btn_navbar"].addEventListener("click", cambiarSeccion);
     }
 
     function ocultar() {
