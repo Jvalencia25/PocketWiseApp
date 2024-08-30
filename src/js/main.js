@@ -29,6 +29,15 @@
         btns["btn_encuesta"] = document.getElementById("btn_encuesta");
         btns["btn_navbar"] = document.getElementById("btn_navbar");
 
+        
+        btns["btn_home"] = document.getElementById("btn_home");
+        btns["btn2_resumen"] = document.getElementById("btn2_resumen");
+        btns["btn2_ganancia"] = document.getElementById("btn2_ganancia");
+        btns["btn2_gasto"] = document.getElementById("btn2_gasto");
+        btns["btn2_sobre"] = document.getElementById("btn2_sobre");
+        btns["btn2_encuesta"] = document.getElementById("btn2_encuesta");
+        
+
         asignarEventosMenu();
         asignarVolver();
         cargarDatos();
@@ -223,12 +232,19 @@
     }
 
     function asignarEventosMenu() {
+        
+        btns["btn_home"].addEventListener("click", cambiarSeccion);
         btns["btn_resumen"].addEventListener("click", cambiarSeccion);
         btns["btn_ganancia"].addEventListener("click", cambiarSeccion);
         btns["btn_gasto"].addEventListener("click", cambiarSeccion);
         btns["btn_sobre"].addEventListener("click", cambiarSeccion);
         btns["btn_encuesta"].addEventListener("click", cambiarSeccion);
         btns["btn_navbar"].addEventListener("click", cambiarSeccion);
+        btns["btn2_resumen"].addEventListener("click", cambiarSeccion);
+        btns["btn2_ganancia"].addEventListener("click", cambiarSeccion);
+        btns["btn2_gasto"].addEventListener("click", cambiarSeccion);
+        btns["btn2_sobre"].addEventListener("click", cambiarSeccion);
+        btns["btn2_encuesta"].addEventListener("click", cambiarSeccion);
     }
 
     function ocultar() {
