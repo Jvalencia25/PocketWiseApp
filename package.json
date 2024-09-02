@@ -5,16 +5,24 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean & parcel build ./src/index.html --public-url ./",
-    "start": "parcel ./src/index.html"
+    "start": "parcel ./src/index.html",
+    "rm": "rimraf node_modules & rimraf .parcel-cache & rimraf src",
+    "move": "mv dist/* .",
+    "hibrida": "npx cap init",
+    "android": "npx cap add android",
+    "sync": "npx cap sync"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@capacitor/cli": "^6.1.2",
     "@parcel/transformer-sass": "^2.12.0",
     "parcel": "^2.12.0"
   },
   "dependencies": {
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/core": "^6.1.2",
     "animate.css": "^4.1.1",
     "rimraf": "^6.0.1"
   }
