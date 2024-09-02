@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Aplicación híbrida para el curso de Aplicaciones Móviles",
   "scripts": {
-    "build": "parcel build ./src/index.html --public-url ./",
+    "clean": "rimraf dist",
+    "build": "npm run clean & parcel build ./src/index.html --public-url ./",
     "start": "parcel ./src/index.html"
   },
   "keywords": [],
@@ -14,6 +15,7 @@
     "parcel": "^2.12.0"
   },
   "dependencies": {
-    "animate.css": "^4.1.1"
+    "animate.css": "^4.1.1",
+    "rimraf": "^6.0.1"
   }
 }
