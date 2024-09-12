@@ -210,7 +210,7 @@
             }
         } else {
             const img = document.createElement('img');
-            img.src = '../img/placeholder_empty.jpg';
+            img.src = 'https://i.imgur.com/a0dqpAM.png';
             img.classList.add("imagen");
 
             const emptyDiv = document.createElement('div');
